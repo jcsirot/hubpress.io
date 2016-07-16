@@ -1,4 +1,222 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 16 Jul 2016 16:41:51 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[La cryptographie à clé publique par ses inventeurs]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 16 Jul 2016 16:51:23 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
+</div>
+<div class="paragraph">
+<p>Prenons ce morceau de code :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Outer
+{
+    public Outer() {
+        new Inner();
+    }
+    public class Inner {}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et regardons le bytecode des constructeurs généré par le compilateur :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>// Outer.class
+**** &lt;init&gt; () -&gt; void
+    0: aload $0
+    1: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    4: new Outer$Inner
+    7: dup
+    8: aload $0
+    9: invokespecial Outer$Inner.&lt;init&gt; {(Outer) -&gt; void}
+   12: pop
+   13: return
+
+// Outer$Inner.class
+**** &lt;init&gt; (Outer) -&gt; void
+    0: aload $0
+    1: aload $1
+    2: putfield Outer$Inner.this$0 {Outer}
+    5: aload $0
+    6: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    9: return</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La class <code>Inner</code> s’est vue ajouter un constructeur qui prend un paramètre de type <code>Outer</code> et quand <code>Outer</code> appelle ce constructeur il passe this en paramètre (l’instruction <code>aload $0</code> charge <code>this</code> sur la pile juste avant l’appel du constructeur).</p>
+</div>
+<div class="paragraph">
+<p>En fait la classe interne est vue comme n’importe quelle autre classe. Pour lui permettre d’accès à la classe englobante il lui faut un pointeur vers l’instance de cette classe. Ce pointeur lui est passé en paramètre dans un constructeur ajouté à la compilation.</p>
+</div>
+<div class="paragraph">
+<p>Allons un peu plus loin. Si la classe interne n’est pas différente des autres classes alors que ce passe-t-il quand la classe englobante veut accéder à une méthode <code>private</code> de la classe interne ?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Outer
+{
+    public Outer() {
+        Inner inner = new Inner();
+        inner.hello();
+    }
+    public class Inner {
+        private void hello() {
+            System.out.println("Hello World");
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et le bytecode :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Outer.class
+**** &lt;init&gt; () -&gt; void
+    0: aload $0
+    1: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    4: new Outer$Inner
+    7: dup
+    8: aload $0
+    9: invokespecial Outer$Inner.&lt;init&gt; {(Outer) -&gt; void}
+   12: astore $1
+   13: aload $1
+   14: invokestatic Outer$Inner.access$000 {(Outer$Inner) -&gt; void}
+   17: return
+
+// Outer$Inner.class
+**** &lt;init&gt; (Outer) -&gt; void
+    0: aload $0
+    1: aload $1
+    2: putfield Outer$Inner.this$0 {Outer}
+    5: aload $0
+    6: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    9: return
+
+**** hello () -&gt; void
+    0: getstatic java/lang/System.out {java.io.PrintStream}
+    3: ldc "Hello World"
+    5: invokevirtual java/io/PrintStream.println {(java.lang.String) -&gt; void}
+    8: return
+
+**** access$000 (Outer$Inner) -&gt; void
+    0: aload $0
+    1: invokespecial Outer$Inner.hello {() -&gt; void}
+    4: return</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La méthode <code>hello</code> est privée et donc Outer ne peut pas l&#8217;appeler directement. Dans ce le compilateur a ajouté une méthode package statique void <code>access$000(Inner)</code> qui sert alors de proxy. Cette méthode se contente alors de rediriger l&#8217;appel vers le méthode <code>hello</code>. Dans le code de l&#8217;appelant l&#8217;appel à la méthode privée est simplement remplacé par un appel à la méthode statique correspondante.</p>
+</div>
+<div class="paragraph">
+<p>Dans le cas de l&#8217;accès à un champ privé, le résultat est très similaire :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Outer
+{
+    public Outer() {
+        Inner inner = new Inner();
+        String hello = inner.hello;
+    }
+    public class Inner {
+        private String hello = "Hello World";
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Outer.class
+**** &lt;init&gt; () -&gt; void
+    0: aload $0
+    1: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    4: new Outer$Inner
+    7: dup
+    8: aload $0
+    9: invokespecial Outer$Inner.&lt;init&gt; {(Outer) -&gt; void}
+   12: astore $1
+   13: aload $1
+   14: invokestatic Outer$Inner.access$000 {(Outer$Inner) -&gt; java.lang.String}
+   17: astore $2
+   18: return
+
+// Outer$Inner.class
+**** &lt;init&gt; (Outer) -&gt; void
+    0: aload $0
+    1: aload $1
+    2: putfield Outer$Inner.this$0 {Outer}
+    5: aload $0
+    6: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    9: aload $0
+   10: ldc "Hello World"
+   12: putfield Outer$Inner.hello {java.lang.String}
+   15: return
+
+**** access$000 (Outer$Inner) -&gt; java.lang.String
+    0: aload $0
+    1: getfield Outer$Inner.hello {java.lang.String}
+    4: areturn</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dans ce cas aussi, l&#8217;accès au champ privé <code>hello</code> n&#8217;est pas possible directement. Le compiltateur a donc ajouté une méthode package statique <code>String access$000(Inner)</code> qui lit le champ (opcode <code>getfield</code>) et le renvoie à l&#8217;appelant.</p>
+</div>
+<div class="paragraph">
+<p>Et dans le cas d&#8217;un constructeur privé ? Vat-t-on se retrouver avec une méthode statique de type <em>factory</em> qui va instancier l&#8217;object qu&#8217;on cherche à construire ? Non, ici le compilateur opte pour une autre stratégie :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Outer
+{
+    public Outer() {
+        Inner inner = new Inner();
+    }
+    public class Inner {
+        private Inner() {}
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>// Outer.class
+**** &lt;init&gt; () -&gt; void
+    0: aload $0
+    1: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    4: new Outer$Inner
+    7: dup
+    8: aload $0
+    9: aconst_null
+   10: invokespecial Outer$Inner.&lt;init&gt; {(Outer, Outer$1) -&gt; void}
+   13: astore $1
+   14: return
+
+// Outer$Inner.class
+**** &lt;init&gt; (Outer) -&gt; void
+    0: aload $0
+    1: aload $1
+    2: putfield Outer$Inner.this$0 {Outer}
+    5: aload $0
+    6: invokespecial java/lang/Object.&lt;init&gt; {() -&gt; void}
+    9: return
+
+**** &lt;init&gt; (Outer, Outer$1) -&gt; void
+    0: aload $0
+    1: aload $1
+    2: invokespecial Outer$Inner.&lt;init&gt; {(Outer) -&gt; void}
+    5: return</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le compilateur ajoute un second constructeur qui prend deux paramètres : le pointeur vers l&#8217;instance de la classe englobante et un paramètre de type <code>Outer$1</code>. Quelle est ce type ? Il s&#8217;agit d&#8217;une interface sans méthode créée automatiquement à la compilation. Cette interface sert simplement différencier les deux constructeurs (le second constructeur se contente d&#8217;appeler le premier). Lors de l&#8217;appel de ce constructeur ce second paramètre est mis à null (<code>null</code> est chargé sur la pile par l&#8217;opcode <code>aconst_null</code>).</p>
+</div>
+<div class="paragraph">
+<p>Le problème principal de ces différentes <em>ruses</em> du compilateur est que cela peut rendre les stacktraces difficilement lisibles si on fait un usage immodéré des classes internes. Il vaut mieux également éviter d&#8217;appeler des méthodes privées depuis la classe englobante. L&#8217;analyseur de code <a href="http://pmd.sourceforge.net/">PMD</a> définit d&#8217;ailleurs une règle <a href="http://pmd.sourceforge.net/rules/design.html">AccessorClassGeneration</a> qui lève une alerte quand un constructeur privé est appelé depuis la classe englobante.</p>
+</div>
+<div class="paragraph">
+<p>Et que se passe-t-il si on tente d&#8217;accéder à une méthode privée de la classe englobante depuis la classe interne ? Je vous laisse expérimenter :D.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/12/26/Les-classes-internes-ou-la-tambouille-du-compilateur-Java.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/12/26/Les-classes-internes-ou-la-tambouille-du-compilateur-Java.html</guid><category><![CDATA[bytecode]]></category><category><![CDATA[ compiler]]></category><category><![CDATA[ java]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Mon, 26 Dec 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[La cryptographie à clé publique par ses inventeurs]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="http://fr.wikipedia.org/wiki/Ronald_Rivest">Ron Rivest</a>, <a href="http://fr.wikipedia.org/wiki/Adi_Shamir">Adi Shamir</a>, <a href="http://fr.wikipedia.org/wiki/Leonard_Adleman">Leonard Adleman</a>, <a href="http://fr.wikipedia.org/wiki/Whitfield_Diffie">Whitfield Diffie</a>, <a href="http://fr.wikipedia.org/wiki/Martin_Hellman">Martin Hellman</a>, <a href="http://fr.wikipedia.org/wiki/Ralph_Merkle">Ralph Merkle</a>. Dans les années 70 en découvrant la cryptographie à clé publique ils ont révolutionné le monde. Télécommunications, commerce électronique, cartes bancaires, téléphonie mobile, VIGIK®… Nous utilisons tous et tous les jours leurs découvertes, souvent même sans le savoir.</p>
 </div>
 <div class="paragraph">
