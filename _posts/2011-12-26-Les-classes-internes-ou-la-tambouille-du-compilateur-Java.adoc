@@ -1,5 +1,5 @@
 = Les classes internes ou la tambouille du compilateur Java
-:published_at: 2011-12-26 23:54
+:published_at: 2011-12-26
 :hp-tags: bytecode, compiler, java
 
 Il y a quelques mois Olivier Croisier a publié sur son blog http://thecodersbreakfast.net/[The Coder’s Breakfast] (que tout développeur Java se doit de suivre) un article intitulé http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor[Inner classes and the myth of the default constructor]. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.
