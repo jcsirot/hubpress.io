@@ -1,6 +1,6 @@
 = La cryptographie à clé publique par ses inventeurs
 :hp-tags: cryptography, RSA, security, video
-:published_at: 2011-08-06 16:53
+:published_at: 2011-08-06
 
 http://fr.wikipedia.org/wiki/Ronald_Rivest[Ron Rivest], http://fr.wikipedia.org/wiki/Adi_Shamir[Adi Shamir], http://fr.wikipedia.org/wiki/Leonard_Adleman[Leonard Adleman], http://fr.wikipedia.org/wiki/Whitfield_Diffie[Whitfield Diffie], http://fr.wikipedia.org/wiki/Martin_Hellman[Martin Hellman], http://fr.wikipedia.org/wiki/Ralph_Merkle[Ralph Merkle]. Dans les années 70 en découvrant la cryptographie à clé publique ils ont révolutionné le monde. Télécommunications, commerce électronique, cartes bancaires, téléphonie mobile, VIGIK®… Nous utilisons tous et tous les jours leurs découvertes, souvent même sans le savoir.
 
