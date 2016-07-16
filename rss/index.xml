@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sat, 16 Jul 2016 16:26:51 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Quicksort en Scala]]></title><description><![CDATA[<div class="paragraph">
+<p>Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes.</p>
+</div>
+<div class="paragraph">
+<p>Comment faire un quicksort en Scala ?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort (list : Seq[Int]) : Seq[Int] = {
+  list match {
+    case Nil =&gt; list
+    case x :: xs =&gt; sort(xs.filter(_ &lt; x)) ++ List(x) ++ sort(xs.filter(_ &gt;= x))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ça marche pour les int. Mais si je veux trier des float, des String, des Scoubidou ? Il faudrait généraliser la fonction. Pour cela il existe le trait `Ordered qui permet de définir une relation d’ordre total sur les éléments.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A &lt;% Ordered[A]] (list:Seq[A]): Seq[A] = {
+  list match {
+    case Nil =&gt; list
+    case x :: xs =&gt; sort(xs.filter(_ &lt; x)) ++ List(x) ++ sort(xs.filter(_ &gt;= x))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L’expression `[A &lt;% Ordered[A]] est une <em>view bound</em>. Cela permet de définir une fonction polymorphique mais aussi fournit la conversion implicite du type A en Ordered[A]. En fait cette définition :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A &lt;% Ordered[A]] (list:Seq[A]): Seq[A] = { /* ... */ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>est équivalente à :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A] (list:Seq[A])(implicit conv: A =&gt; Ordered[A]): Seq[A] = { /* ... */ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Avantage : l’objet <code>scala.Predef</code> qui est tourjours chargé par Scala possède déjà plusieurs fonctions implicites de converstion par exemple <code>Int</code> vers <code>Ordered[Int]</code>.</p>
+</div>
+<div class="paragraph">
+<p>Et si maintenant nous compararions nos scoubidous ?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">case class Scoubidou(name: String)
+val samy = Scoubidou("Samy")
+val daphne = Scoubidou("Daphne")
+sort(List(samy, daphne))
+
+&gt; error: no implicit argument matching parameter type (Scoubidou) =&gt; Ordered[Scoubidou] was found.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et oui, sort attend un <code>Ordered</code>. Bien sûr nous pourrions nous arranger pour que Scoubidou étende le trait Ordered mais parfois ce n’est simplement pas possible, par exemple parce que le type est fournit par une bibliothèque sur laquelle on n’a pas la main. Mais il est possible de définir une fonction implicite de conversion qui trie les Scoubidou selon l’ordre lexicographique (en clair on va déléguer l’appel à compare au champ name).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">implicit def scoubidou2ordered (x: Scoubidou): Ordered[Scoubidou] = {
+  new Ordered[Scoubidou] {
+    def compare(that: Scoubidou): Int = {
+      x.name.compare(that.name)
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>et maintenant on peut trier la liste :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">sort(List(samy, daphne))
+
+&gt; Seq[Scoubidou] = List(Scoubidou(Daphne), Scoubidou(Samy))</code></pre>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2016/07/16/Quicksort-en-Scala.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2016/07/16/Quicksort-en-Scala.html</guid><category><![CDATA[scala]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 16 Jul 2016 00:00:00 GMT</pubDate></item></channel></rss>
