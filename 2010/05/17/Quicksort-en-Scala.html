@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Quicksort en Scala</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://jcsirot.github.io/hubpress.io/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//jcsirot.github.io/hubpress.io/themes/casper/assets/css/screen.css?v=1468686749519" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Quicksort en Scala" />
+    <meta property="og:description" content="Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes. Comment faire un quicksort en Scala ? def sort (list : Seq[Int]) : Seq[Int] &#x3D; {   list match {     case Nil &#x3D;&amp;gt; list     case x :: xs &#x3D;&amp;gt; sort(xs.filter(_ &amp;lt; x)) ++ List(x)" />
+    <meta property="og:url" content="https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html" />
+    <meta property="article:tag" content="scala" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Quicksort en Scala" />
+    <meta name="twitter:description" content="Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes. Comment faire un quicksort en Scala ? def sort (list : Seq[Int]) : Seq[Int] &#x3D; {   list match {     case Nil &#x3D;&amp;gt; list     case x :: xs &#x3D;&amp;gt; sort(xs.filter(_ &amp;lt; x)) ++ List(x)" />
+    <meta name="twitter:url" content="https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="" href="https://jcsirot.github.io/hubpress.io/rss/" />
+</head>
+<body class="post-template tag-scala nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-scala">
+
+        <header class="post-header">
+            <h1 class="post-title">Quicksort en Scala</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2010-05-17">17 May 2010</time>  on <a href="https://jcsirot.github.io/hubpress.io/tag/scala/">scala</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="paragraph">
+<p>Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes.</p>
+</div>
+<div class="paragraph">
+<p>Comment faire un quicksort en Scala ?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort (list : Seq[Int]) : Seq[Int] = {
+  list match {
+    case Nil =&gt; list
+    case x :: xs =&gt; sort(xs.filter(_ &lt; x)) ++ List(x) ++ sort(xs.filter(_ &gt;= x))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ça marche pour les int. Mais si je veux trier des float, des String, des Scoubidou ? Il faudrait généraliser la fonction. Pour cela il existe le trait `Ordered qui permet de définir une relation d’ordre total sur les éléments.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A &lt;% Ordered[A]] (list:Seq[A]): Seq[A] = {
+  list match {
+    case Nil =&gt; list
+    case x :: xs =&gt; sort(xs.filter(_ &lt; x)) ++ List(x) ++ sort(xs.filter(_ &gt;= x))
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L’expression `[A &lt;% Ordered[A]] est une <em>view bound</em>. Cela permet de définir une fonction polymorphique mais aussi fournit la conversion implicite du type A en Ordered[A]. En fait cette définition :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A &lt;% Ordered[A]] (list:Seq[A]): Seq[A] = { /* ... */ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>est équivalente à :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def sort [A] (list:Seq[A])(implicit conv: A =&gt; Ordered[A]): Seq[A] = { /* ... */ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Avantage : l’objet <code>scala.Predef</code> qui est tourjours chargé par Scala possède déjà plusieurs fonctions implicites de converstion par exemple <code>Int</code> vers <code>Ordered[Int]</code>.</p>
+</div>
+<div class="paragraph">
+<p>Et si maintenant nous compararions nos scoubidous ?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">case class Scoubidou(name: String)
+val samy = Scoubidou("Samy")
+val daphne = Scoubidou("Daphne")
+sort(List(samy, daphne))
+
+&gt; error: no implicit argument matching parameter type (Scoubidou) =&gt; Ordered[Scoubidou] was found.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et oui, sort attend un <code>Ordered</code>. Bien sûr nous pourrions nous arranger pour que Scoubidou étende le trait Ordered mais parfois ce n’est simplement pas possible, par exemple parce que le type est fournit par une bibliothèque sur laquelle on n’a pas la main. Mais il est possible de définir une fonction implicite de conversion qui trie les Scoubidou selon l’ordre lexicographique (en clair on va déléguer l’appel à compare au champ name).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">implicit def scoubidou2ordered (x: Scoubidou): Ordered[Scoubidou] = {
+  new Ordered[Scoubidou] {
+    def compare(that: Scoubidou): Int = {
+      x.name.compare(that.name)
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>et maintenant on peut trier la liste :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">sort(List(samy, daphne))
+
+&gt; Seq[Scoubidou] = List(Scoubidou(Daphne), Scoubidou(Samy))</code></pre>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="https://jcsirot.github.io/hubpress.io/author/jcsirot/" style="background-image: url(https://avatars.githubusercontent.com/u/470082?v&#x3D;3)"><span class="hidden">Jean-Christophe Sirot's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="https://jcsirot.github.io/hubpress.io/author/jcsirot/">Jean-Christophe Sirot</a></h4>
+
+                    <p>Read <a href="https://jcsirot.github.io/hubpress.io/author/jcsirot/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Paris</span>
+                    <span class="author-link icon-link"><a href="http://www.coding-stories.com/">http://www.coding-stories.com/</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Quicksort%20en%20Scala&amp;url=https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://jcsirot.github.io/hubpress.io/2010/05/17/Quicksort-en-Scala.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="https://jcsirot.github.io/hubpress.io"></a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script type="text/javascript" src="//jcsirot.github.io/hubpress.io/themes/casper/assets/js/jquery.fitvids.js?v=1468686749519"></script>
+    <script type="text/javascript" src="//jcsirot.github.io/hubpress.io/themes/casper/assets/js/index.js?v=1468686749519"></script>
+
+</body>
+</html>
