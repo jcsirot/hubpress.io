@@ -1,5 +1,6 @@
 = Quicksort en Scala
 :hp-tags: scala,
+:published_at: 2010-05-17
 
 Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes.
 
