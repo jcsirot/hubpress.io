@@ -4,7 +4,7 @@
 
 Google vient de http://developer.android.com/resources/dashboard/platform-versions.html[mettre à jour] ses données concernant la répartition des différentes versions d’android :
 
-image::posts/android_fragmentation-20100519.png[width=370, title=Répartition des version Android]
+image::posts/android_fragmentation-20100519.png[Répartition des version Android, width=370]
 
 Ces chiffres ont été collectés à partir des statistiques de connexion à l’Android Market. Voilà ce que cela donne :
 
