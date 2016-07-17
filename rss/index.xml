@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Jul 2016 12:09:32 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Jul 2016 12:26:29 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
@@ -226,7 +226,68 @@
 <div class="content">
 <iframe width="640" height="480" src="https://www.youtube.com/embed/mvOsb9vNIWM?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Quicksort en Scala]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Android 2.1 passe en tête]]></title><description><![CDATA[<div class="paragraph">
+<p>Google vient de <a href="http://developer.android.com/resources/dashboard/platform-versions.html">mettre à jour</a> ses données concernant la répartition des différentes versions d’android :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/android_fragmentation-20100519.png" alt="android fragmentation 20100519.png" width="370">
+</div>
+<div class="title">Figure 1. Répartition des version Android</div>
+</div>
+<div class="paragraph">
+<p>Ces chiffres ont été collectés à partir des statistiques de connexion à l’Android Market. Voilà ce que cela donne :</p>
+</div>
+<table class="tableblock frame-topbot grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Android Platform</th>
+<th class="tableblock halign-left valign-top">Percent of Devices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">34.1%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">28.0%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 2.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android 2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">37.2%</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>C’est en comparant avec les même données du mois dernier que cela devient intéressant : Android 2.1 passe de 27,3% à 37,2% de part de marché, soit une augmentation de presque 10 points. À l’opposé, les versions 1.5 et 1.6 perdent respectivement 3,8 points et 3,6 points. Cela veut surtout dire que la version 2.1 est désormais la version majoritairement déployée sur l’ensemble des terminaux Android.</p>
+</div>
+<div class="paragraph">
+<p>En supposant que ces chiffres soit représentatifs du parc (<a href="http://www.sosandroid.fr/andropress/2010/05/18/android-eclair-2-1-devient-la-principale-version-deployee-3821/">et SOS Android a fait quelques comparaisons et semble le croire</a>), on assiste, lentement mais sûrement, à une concentration des versions diffusées. Les améliorations entre 1.x et les 2.x ayant réellement amélioré la qualité de l’OS, cette concentration est plutôt une bonne nouvelle.</p>
+</div>
+<div class="paragraph">
+<p>À moins que la version 2.2, alias <em>Froyo</em>, ne vienne changer la donne.</p>
+</div>
+<div class="paragraph">
+<p><strong>Update</strong> Après plusieurs mois de rumeurs HTC vient de publier la première mise à jour officielle du Hero (Uniquement chez Sprint pour le moment).</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/05/19/Android-21-passe-en-tete.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/05/19/Android-21-passe-en-tete.html</guid><category><![CDATA[android]]></category><category><![CDATA[ google]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Wed, 19 May 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Quicksort en Scala]]></title><description><![CDATA[<div class="paragraph">
 <p>Retour aux racines du génie logiciel : le tri. Tout développeur doit savoir écrire un tri en moins de 5 minutes.</p>
 </div>
 <div class="paragraph">
