@@ -6,4 +6,4 @@ http://fr.wikipedia.org/wiki/Ronald_Rivest[Ron Rivest], http://fr.wikipedia.org/
 
 Dans cette courte vidéo diffusée à l’ouverture de la http://www.rsaconference.com/2011/usa/[conférence RSA 2011], les acteurs de cette révolution en racontent la genèse.
 
-video::mvOsb9vNIWM[youtube, width=640]
+video::mvOsb9vNIWM[youtube, width=640, height=480]
