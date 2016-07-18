@@ -1,0 +1,26 @@
+= Crible d’Ératosthène en Scala
+:hp-tags: scala
+:published_at: 2010-05-20
+
+Le https://fr.wikipedia.org/wiki/Crible_d%27%C3%89ratosth%C3%A8ne[crible d’Ératosthène] est un grand classique des langages fonctionnels :
+
+[source,scala]
+----
+def primes (end: Int): Seq[Int] = {
+  def sieve (list: Seq[Int]): Seq[Int] = {
+    list match {
+      case Nil => List()
+      case x :: xs => List(x) ++ sieve(xs.filter(_ % x != 0))
+    }
+  }
+  sieve(List.range(2, end))
+}
+----
+
+Faisons un test :
+
+[source,scala]
+----
+scala> primes(100)
+res0: Seq[Int] = List(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+----
