@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 14:55:43 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 17:25:38 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -168,7 +168,320 @@
 </ul>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</guid><category><![CDATA[Continuous Delivery]]></category><category><![CDATA[ Jenkins]]></category><category><![CDATA[ Jenkins workflow]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ Docker]]></category><category><![CDATA[ devops]]></category><category><![CDATA[ test]]></category><category><![CDATA[ en]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 23 Aug 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</guid><category><![CDATA[Continuous Delivery]]></category><category><![CDATA[ Jenkins]]></category><category><![CDATA[ Jenkins workflow]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ Docker]]></category><category><![CDATA[ devops]]></category><category><![CDATA[ test]]></category><category><![CDATA[ en]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 23 Aug 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[SSL et les banques]]></title><description><![CDATA[<div class="paragraph">
+<p>Il y a quelques jours l&#8217;expert en sécurité Troy Hunt <a href="http://www.troyhunt.com/2015/05/do-you-really-want-bank-grade-security.html">publiait sur son blog</a> un état des lieux de l&#8217;utilisation de SSL par les banques australiennes.</p>
+</div>
+<div class="paragraph">
+<p>Et qu&#8217;en est-il des banques françaises ? En utilisant le service <a href="https://www.ssllabs.com/">SSL Labs</a> de Qualys, voici les résultats obtenus.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.091%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Note</th>
+<th class="tableblock halign-left valign-top">SSL v3</th>
+<th class="tableblock halign-left valign-top">Certificats SHA-1</th>
+<th class="tableblock halign-left valign-top">TLS 1.2</th>
+<th class="tableblock halign-left valign-top">RC4</th>
+<th class="tableblock halign-left valign-top">Perfect Forward Secrecy</th>
+<th class="tableblock halign-left valign-top">Vulnérabilité POODLE</th>
+<th class="tableblock halign-left valign-top">Vulnérabilité Heartbleed</th>
+<th class="tableblock halign-left valign-top">Certificat EV</th>
+<th class="tableblock halign-left valign-top">Certificate Transparency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.ibps.rivesparis.banquepopulaire.fr&amp;hideResults=on">www.ibps.rivesparis.banquepopulaire.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><strong>A</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=secure.ingdirect.fr&amp;hideResults=on">secure.ingdirect.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><strong>A-</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=boursorama.com&amp;s=83.231.216.140&amp;hideResults=on">www.boursorama.com</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: lightgreen;"><p class="tableblock"><strong>A-</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong> *</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.axa.fr&amp;s=174.35.7.31&amp;hideResults=on">www.axa.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong> **</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.hellobank.fr&amp;hideResults=on">www.hellobank.com</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.ca-paris.fr&amp;hideResults=on">www.ca-paris.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong> **</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.cic.fr&amp;s=145.226.109.155&amp;hideResults=on">www.cic.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.secure.bnpparibas.net&amp;s=159.50.16.33&amp;hideResults=on">www.secure.bnpparibas.net</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.caisse-epargne.fr&amp;s=91.135.188.224&amp;hideResults=on">www.caisse-epargne.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.monabanq.com&amp;s=145.226.99.116&amp;hideResults=on">www.monabanq.com</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.macif.fr&amp;hideResults=on">www.macif.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.hsbc.fr&amp;s=91.214.6.232">www.hsbc.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong> **</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=particuliers.secure.lcl.fr&amp;hideResults=on">particuliers.secure.lcl.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=creditmutuel.fr&amp;s=145.226.45.139&amp;hideResults=on">www.creditmutuel.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: orange;"><p class="tableblock"><strong>B</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.fortuneo.fr&amp;s=194.51.217.72&amp;hideResults=on">www.fortuneo.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><strong>C</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong> **</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.societegenerale.fr&amp;hideResults=on">www.societegenerale.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><strong>C</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.allianzbanque.fr&amp;hideResults=on">www.allianzbanque.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><strong>C</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.credit-du-nord.fr&amp;hideResults=on">www.credit-du-nord.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: yellow;"><p class="tableblock"><strong>C</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=espaceclient.groupama.fr&amp;hideResults=on">espaceclient.groupama.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>F</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.labanquepostale.fr&amp;hideResults=on">www.labanquepostale.fr</a></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>F</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: red;"><p class="tableblock"><strong>FAIL</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: green;"><p class="tableblock"><strong>PASS</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>YES</strong></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: gray;"><p class="tableblock"><strong>NO</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="small">* un certificat intermédiaire utilise SHA-1</span>
+<span class="small">** Le certificat de l’autorité racine utilise SHA-1</span></p>
+</div>
+<div class="paragraph">
+<p>Quelques remarques complémentaires :</p>
+</div>
+<div class="paragraph">
+<p>D&#8217;abord, en faisant ce test, j&#8217;ai été surpris de découvrir que nombreuses banques ne servaient pas leur page d&#8217;accueil directement en HTTPS.</p>
+</div>
+<div class="paragraph">
+<p>Ensuite bravo aux équipes IT de la Banque populaire, de ING Direct et de Boursorama pour leur note A.</p>
+</div>
+<div class="paragraph">
+<p>Enfin, concernant les notes C et F, elles sont principalement dues à des serveurs vulnérables à l&#8217;attaque <a href="https://fr.wikipedia.org/wiki/POODLE">POODLE</a> (sauf Groupama, vulnérable à <a href="https://community.qualys.com/blogs/securitylabs/2009/11/05/ssl-and-tls-authentication-gap-vulnerability-discovered?_ga=1.245541639.2029124093.1429356581">une attaque sur la renégociation TLS</a>). Il n&#8217;y a sans doute pas de vrai risque d&#8217;attaque car les banques disposent d&#8217;autres mécanismes de protection. Toutefois cela ne donne pas une bonne image et n&#8217;incite pas à la confiance&#8201;&#8212;&#8201;et moi-même étant client de la Banque Postale, je m&#8217;interroge.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</guid><category><![CDATA[SSL]]></category><category><![CDATA[ TLS]]></category><category><![CDATA[ security]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
