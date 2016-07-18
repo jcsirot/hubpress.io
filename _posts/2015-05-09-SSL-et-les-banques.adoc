@@ -1,0 +1,72 @@
+= SSL et les banques
+:hp-tags: SSL, TLS, security
+:published_at: 2015-05-09
+
+Il y a quelques jours l'expert en sécurité Troy Hunt http://www.troyhunt.com/2015/05/do-you-really-want-bank-grade-security.html[publiait sur son blog] un état des lieux de l'utilisation de SSL par les banques australiennes.
+
+Et qu'en est-il des banques françaises ? En utilisant le service https://www.ssllabs.com/[SSL Labs] de Qualys, voici les résultats obtenus.
+
+|===
+| | Note | SSL v3 | Certificats SHA-1 | TLS 1.2 | RC4 | Perfect Forward Secrecy | Vulnérabilité POODLE | Vulnérabilité Heartbleed | Certificat EV | Certificate Transparency
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.ibps.rivesparis.banquepopulaire.fr&hideResults=on[www.ibps.rivesparis.banquepopulaire.fr] {set:cellbgcolor:lightgreen}
+| *A* {set:cellbgcolor:lightgreen}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=secure.ingdirect.fr&hideResults=on[secure.ingdirect.fr] {set:cellbgcolor:lightgreen}
+| *A-* {set:cellbgcolor:lightgreen}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=boursorama.com&s=83.231.216.140&hideResults=on[www.boursorama.com] {set:cellbgcolor:lightgreen}
+| *A-* {set:cellbgcolor:lightgreen}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* * {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.axa.fr&s=174.35.7.31&hideResults=on[www.axa.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* ** {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.hellobank.fr&hideResults=on[www.hellobank.com] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+|===
