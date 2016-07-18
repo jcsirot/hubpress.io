@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:50:41 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:56:13 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
@@ -226,7 +226,20 @@
 <div class="content">
 <iframe width="640" height="480" src="https://www.youtube.com/embed/mvOsb9vNIWM?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[jsChessboard 0.2 est disponible]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Android 2.1 tient la moitié du parc]]></title><description><![CDATA[<div class="paragraph">
+<p>Nouvelle <a href="http://developer.android.com/resources/dashboard/platform-versions.html">mise à jour</a> bimensuelle de la part de Google concernant la répartition des différentes versions d’android :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/android_fragmentation-20100617.png" alt="Répartition des version Android" width="370">
+</div>
+</div>
+<div class="paragraph">
+<p>Cette fois, c’est fait, android 2.1 passe la barre des 50%. Toutefois il faudra compter avec le déploiement d’android 2.2, aka Froyo, dans les prochains mois (si ce n’est les prochaines semaines).</p>
+</div>
+<div class="paragraph">
+<p>Et pendant ce temps les possesseurs du HTC Hero (dont fait partie votre serviteur) attendent avec une impatience non feinte la mise à jour vers la version 2.1. Elle a été promise, annoncée de nombreuses fois et reportée tout autant… Elle est maintenant prévue pour le 29 juin. J’attends…</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/06/26/Android-21-tient-la-moitie-du-parc.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/06/26/Android-21-tient-la-moitie-du-parc.html</guid><category><![CDATA[android]]></category><category><![CDATA[ google]]></category><category><![CDATA[ hero]]></category><category><![CDATA[ htc]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 26 Jun 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[jsChessboard 0.2 est disponible]]></title><description><![CDATA[<div class="paragraph">
 <p>J’ai procédé à la release de la bibliothèque jsChessboard en version 0.2. jsChessboard est une bibliothèque qui permet d’interpréter des parties d’échecs et de dessiner des échiquiers, le tout entièrement en javascript en utilisant le tag <code>&lt;canvas&gt;</code>.</p>
 </div>
 <div class="paragraph">
