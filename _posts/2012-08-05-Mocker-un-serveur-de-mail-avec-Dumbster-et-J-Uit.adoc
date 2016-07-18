@@ -4,8 +4,7 @@
 
 Récemment, en écrivant des tests d’intégration j’ai rencontré un cas d’utilisation qui arrive fréquemment : un utilisateur s’inscrit à un service Web, un courriel lui est envoyé, il contient une URL permettant de confirmer son inscription. La question est comment tester ça automatiquement, par exemple dans un test http://seleniumhq.org/[Selenium] ?
 
-La solution technique
-=====================
+== La solution technique
 
 Première idée : créer un compte mail dédié pour ce test qu’on va interroger avec une bibliothèque comme http://www.oracle.com/technetwork/java/javamail/index.html[javamail]. Cette solution présente toutefois quelques problèmes. D’abord il va falloir maintenir cette boîte mail dans le temps. Ensuite si le serveur SMTP ou le serveur POP/IMAP est indisponible le test va échouer. Et que va-t-il se passer si deux tests sont lancés en même temps ? Finalement une solution qui me semble bien fragile.
 
