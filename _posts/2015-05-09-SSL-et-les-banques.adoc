@@ -189,4 +189,75 @@ Et qu'en est-il des banques françaises ? En utilisant le service https://www.ss
 | *NO* {set:cellbgcolor:gray}
 | *NO* {set:cellbgcolor:gray}
 
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.societegenerale.fr&hideResults=on[www.societegenerale.fr] {set:cellbgcolor:yellow}
+| *C* {set:cellbgcolor:yellow}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.allianzbanque.fr&hideResults=on[www.allianzbanque.fr] {set:cellbgcolor:yellow}
+| *C* {set:cellbgcolor:yellow}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.credit-du-nord.fr&hideResults=on[www.credit-du-nord.fr] {set:cellbgcolor:yellow}
+| *C* {set:cellbgcolor:yellow}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=espaceclient.groupama.fr&hideResults=on[espaceclient.groupama.fr] {set:cellbgcolor:red}
+| *F* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.labanquepostale.fr&hideResults=on[www.labanquepostale.fr] {set:cellbgcolor:red}
+| *F* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
 |===
+
+[small]#* un certificat intermédiaire utilise SHA-1#
+[small]#** Le certificat de l’autorité racine utilise SHA-1#
+
+
+Quelques remarques complémentaires :
+
+D'abord, en faisant ce test, j'ai été surpris de découvrir que nombreuses banques ne servaient pas leur page d'accueil directement en HTTPS.
+
+Ensuite bravo aux équipes IT de la Banque populaire, de ING Direct et de Boursorama pour leur note A.
+
+Enfin, concernant les notes C et F, elles sont principalement dues à des serveurs vulnérables à l'attaque https://fr.wikipedia.org/wiki/POODLE[POODLE] (sauf Groupama, vulnérable à https://community.qualys.com/blogs/securitylabs/2009/11/05/ssl-and-tls-authentication-gap-vulnerability-discovered?_ga=1.245541639.2029124093.1429356581[une attaque sur la renégociation TLS]). Il n'y a sans doute pas de vrai risque d'attaque car les banques disposent d'autres mécanismes de protection. Toutefois cela ne donne pas une bonne image et n'incite pas à la confiance -- et moi-même étant client de la Banque Postale, je m'interroge.
