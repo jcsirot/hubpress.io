@@ -1,0 +1,11 @@
+= Android 2.1 tient la moitié du parc
+:hp-tags: android, google, hero, htc
+:published_at: 2010-06-26
+
+Nouvelle http://developer.android.com/resources/dashboard/platform-versions.html[mise à jour] bimensuelle de la part de Google concernant la répartition des différentes versions d’android :
+
+image::posts/android_fragmentation-20100617.png[Répartition des version Android, width=370]
+
+Cette fois, c’est fait, android 2.1 passe la barre des 50%. Toutefois il faudra compter avec le déploiement d’android 2.2, aka Froyo, dans les prochains mois (si ce n’est les prochaines semaines).
+
+Et pendant ce temps les possesseurs du HTC Hero (dont fait partie votre serviteur) attendent avec une impatience non feinte la mise à jour vers la version 2.1. Elle a été promise, annoncée de nombreuses fois et reportée tout autant… Elle est maintenant prévue pour le 29 juin. J’attends…
