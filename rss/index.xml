@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 21:04:47 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 21:14:18 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -507,7 +507,110 @@
 </div>
 <div class="paragraph">
 <p>Le code n&#8217;est pas encore publié mais sera rapidement <a href="https://github.com/jcsirot/SCUMM-Dart">disponible sur GitHub</a> où pour le moment est hébergé l&#8217;ancienne version.</p>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</guid><category><![CDATA[dart]]></category><category><![CDATA[ dartlang]]></category><category><![CDATA[ SCUMM]]></category><category><![CDATA[ ScummVM]]></category><category><![CDATA[ SCUMMDart]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 19 Mar 2013 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</guid><category><![CDATA[dart]]></category><category><![CDATA[ dartlang]]></category><category><![CDATA[ SCUMM]]></category><category><![CDATA[ ScummVM]]></category><category><![CDATA[ SCUMMDart]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 19 Mar 2013 00:00:00 GMT</pubDate></item><item><title><![CDATA[Code Story 2013 : la phase de sélection]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quand j&#8217;ai lu début janvier l&#8217;annonce du lancement de la saison 2013 de Code Story j&#8217;ai trouvé le principe de sélection amusant. Cette année, c&#8217;est décidé je participe à Code Story. Code Story 2013 me voilà&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_choix_des_technologies">Choix des technologies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette année la sélection consistait à mettre en place un serveur web répondant aux questions du bot de Code Story. Quand la réponse envoyée est fausse, le bot continue à poser la question régulièrement jusqu'à obtenir une réponse correcte. De temps un temps un petit reboot du bot lui fait poser une nouvelle fois toutes les questions depuis le début. Gare alors aux régressions&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Pour le choix du langage, après avoir hésité à choisir un langage "alternatif" (Dart ? Ceylon ?), j&#8217;ai préféré partir sur une valeur sûre et maitrisée : Java.</p>
+</div>
+<div class="paragraph">
+<p>Côté serveur web, il y a pléthore de choix : du <a href="https://github.com/jnizet/CodeStory2013">serveur HTTP réécrit from scratch</a> à partir de <code>java.net.ServerSocket</code> au full-fledge framework comme Play 2 en passant par Jetty et Tomcat. J&#8217;ai choisi la voie moyenne en utilisant le <a href="http://docs.oracle.com/javase/6/docs/jre/api/net/httpserver/spec/index.html?com/sun/net/httpserver/package-summary.html">serveur HTTP livré avec le JRE</a> depuis Java 6.</p>
+</div>
+<div class="paragraph">
+<p>Restait l&#8217;hébergement du serveur. Pour ma première incursion dans le Cloud je me suis souvenu de la présentation <a href="http://blog-rd.ideotechnologies.com/?p=2943">Du legacy au cloud</a> donnée par David Gageot lors du dernier JUG Summer Camp. Il utilisait <a href="http://www.heroku.com/">Heroku</a> pour déployer son application car il est possible de lancer n&#8217;importe quel programme Java disposant d&#8217;un simple <code>main</code>. Le port du serveur est simplment fourni dans une variable d&#8217;environnement. La création d&#8217;une application dans Heroku se fait en moins de 5 minutes et un "git push master heroku" suffit pour recompiler et redéployer automatiquement l&#8217;application. Cerise sur la gâteau, il existe des dizaines de modules complémentaires pour le stockage des données, le logging, etc qu&#8217;il est possible d&#8217;ajouter à son application d&#8217;un simple click.</p>
+</div>
+</div>
+</div>
+<h1 id="_premi_res_questions" class="sect0">Premières questions</h1>
+<div class="paragraph">
+<p>Les premières questions sont simples "Quelle est ton adresse email", "Es tu content de participer à Code Story(OUI/NON)"&#8230;&#8203; Elles permettent au bot Code Story de vérifier que le serveur est bien présent et lit et répond correctement aux requêtes.</p>
+</div>
+<div class="paragraph">
+<p>Les choses sérieuses commence avec l&#8217;arrivée d&#8217;une requête <code>POST</code> contenant l'énonce du premier exercice. J&#8217;interface alors le serveur avec Amazon S3 (merci à Amazon pour sa <a href="http://aws.amazon.com/fr/sdkforjava/">bibliothèque d&#8217;intégration</a>) pour stocker le contenu des requêtes POST qui arrivent, histoire de ne pas perdre l'énoncé.</p>
+</div>
+<h1 id="_l_choppe_de_monade_sur_scalaskel" class="sect0">L'échoppe de monade sur Scalaskel</h1>
+<div class="paragraph">
+<p>Le premier énoncé s&#8217;appelle <em><a href="http://code-story.net/2013/01/22/scalaskel.html">L'échoppe de monade sur Scalaskel</a></em>. C&#8217;est un problème de rendu de monnaie : dénombrer toutes les façons possibles de partager une somme <code>S</code> avec des pièces de valeur <code>P1</code>, <code>P2</code>, <code>P3</code>, &#8230;&#8203; <code>Pn</code>.</p>
+</div>
+<div class="paragraph">
+<p>Je commence classiquement en TDD par écrire des tests pour les premières valeurs : 1, rouge-vert-refactoring, 2, rouge-vert-refactoring&#8230;&#8203; À partir de 8 les choses se compliquent un peu, il y a faut retourner deux solutions. Petit à petit je commence à voir l&#8217;algorithme se dessiner. Les nouveaux tests sont assez simples à trouver et les phases de refactoring ne posent pas non plus trop de problèmes.</p>
+</div>
+<div class="paragraph">
+<p>Finalement j&#8217;arrive à un algorithme contenant deux récursion : une première sur la valeur des pièces (on réduit le nombre de pièces différentes à chaque itération) et une seconde sur la somme à partionner.</p>
+</div>
+<div class="paragraph">
+<p>Je redéploie le serveur et je vois dans les logs les appels du bots pour les valeurs successives de 1 à 100 comme indiqué dans l'énoncé. Tous les tests passent. Joie :p</p>
+</div>
+<div class="paragraph">
+<p>Mon code : <a href="https://gist.github.com/jcsirot/4677917" class="bare">https://gist.github.com/jcsirot/4677917</a></p>
+</div>
+<div class="sect1">
+<h2 id="_la_calculatrice">La calculatrice</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pas d'énoncé pour l&#8217;exercice suivant, les questions se suffisent à elles-même. D&#8217;abord ce sont de simples expressions <code>1+1</code>, <code>2+2</code>, etc ; progressivement elles deviennent plus compliquées : <code>(1+2)/2</code>. Bref, il va falloir écrire un solveur d&#8217;expressions arithmétques.</p>
+</div>
+<div class="paragraph">
+<p>Certains auront l&#8217;idée d'évaluer l&#8217;expression en emabarquant Groovy, une idée très maligne. Mais moi je suis ici en terrain connu. Ce problème, je le fais coder aux ingénieurs que je vois en entretien d&#8217;embauche alors je sais comment faire : <a href="http://en.wikipedia.org/wiki/Shunting-yard_algorithm">l&#8217;algorithme Shunting-yard</a> inventé par Dijkstra permet de transformer une expression en notation infixée en notation post-fixée (la notation polonaise inversée bien connu des possesseurs de HP48) ou en AST.</p>
+</div>
+<div class="paragraph">
+<p>Pour aller plus vite, pas (trop) de TDD. J'écris une liste de tests puis je code l&#8217;algorithme d&#8217;une traite. Comme on ne cherche à supporter que les quatres opérations et les parenthèses l&#8217;implémenter est assez courte. L&#8217;algorithme fonctionne (presque&#8230;&#8203;) du premier coup.</p>
+</div>
+<div class="paragraph">
+<p>De nouvelles questions arrivant du bot demandent de supporter les nombres négatifs. J&#8217;ajoute un lexer pour découper l&#8217;expression en tokens car un simple StringTokenizer ne suffit plus.</p>
+</div>
+<div class="paragraph">
+<p>Finalement, sécurisé par l&#8217;ensemble des tests unitaires, je me lance dans un important refactoring pour utiliser un pattern visitor et rendre le code un peu plus objet, la contrepartie étant un nombre de classes plus important.</p>
+</div>
+<div class="paragraph">
+<p>Mon code : <a href="https://gist.github.com/jcsirot/4990325" class="bare">https://gist.github.com/jcsirot/4990325</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_location_d_astronef_sur_jajascript">Location d’astronef sur Jajascript</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le troisième exercice est <em><a href="http://code-story.net/2013/02/02/jajascript.html">Location d’astronef sur Jajascript</a></em> et c&#8217;est sans doute celui qui m&#8217;a demandé le plus de travail.</p>
+</div>
+<div class="paragraph">
+<p>Tout commençait bien car j&#8217;avais déjà vu ce kata au Paris Scala User Group. J&#8217;ai donc rapidement produit une première version fonctionnelle. L&#8217;algorithme consite à parcourir de façon récursive l&#8217;arbre de toutes les combinaisons de locations possibles (c&#8217;est à dire en ne prenant que des vols qui ne chevauchent pas) et à garder la plus rentable.</p>
+</div>
+<div class="paragraph">
+<p>Assez rapidement je trouve une optimisation. L&#8217;algorithme passe en effet beaucoup de temps à recalculer le chemin optimal pour une liste commençant par un vol donné. On peut donc créer un cache qui associe un vol avec le chemin optimal à utiliser.</p>
+</div>
+<div class="paragraph">
+<p>Le premier déploiement (en fait le second, car j&#8217;avais oublié de trier les vols la première fois) fonctionne et va jusqu'à 1500 vols. Sauf que ma JVM comment à se sentir un peu à l'étroit dans les 512Mo de RAM accordés par Heroku et le processus commence à swapper. Impossible de répondre dans les 30 secondes impartis. Je pense que j&#8217;aurais pu améliorer les strucutures de données pour prendre moins de RAM mais je choisis une autre option.</p>
+</div>
+<div class="paragraph">
+<p>À la lecture des tweets qui s'échangeaient sur ce problème je décide de chercher un algorithme non récursif. Ça sera comme bien souvent en discutant du problème avec un collègue que je trouverai la solution. Le cache calculé dans l&#8217;agorithme récursif peut être généré de façon itérative en commançant par la fin de la liste et en remontant vers les premiers vols tout en utilisant les valeurs stockées dans le cache pour calculer à chaque fois le résultat optimal.</p>
+</div>
+<div class="paragraph">
+<p>Désormais mon algorithme passe la barre des 50000 vols (3,7 Mo de JSON tout de même) mais peine à le faire sous la barre des 30 secondes. Ma dernière idée me viendra un matin sous la douche :-) L&#8217;algorithme passe beaucoup de temps, en construisant les valeurs du cache, à copier des listes de chaînes de caractères. C&#8217;est en remplaçant ces copies par une simple implémentation de liste chaînée que j&#8217;obtiendrai la plus impressionnante amélioration de performance : le traitement d&#8217;une liste de 50000 vols passant de 17s à 20ms (oui, presque 1000 fois plus rapide).</p>
+</div>
+<div class="paragraph">
+<p>Mon code : <a href="https://gist.github.com/jcsirot/4990366" class="bare">https://gist.github.com/jcsirot/4990366</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Code Story, c&#8217;est fun. J&#8217;aurais certainement passé plus de temps que prévu mais toujours en y prennant beaucoup de plaisir. Et cela permet de jouer avec des petits problèmes d&#8217;algorithmiques qu&#8217;on ne voit pas forcément tous les jours. Finalement j&#8217;ai été sélectionné pour la phase finale qui aura lieu chez Google jeudi 21 février. Cela fera l&#8217;objet d&#8217;un second post.</p>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2013/02/20/Code-Story-2013-la-phase-de-selection.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2013/02/20/Code-Story-2013-la-phase-de-selection.html</guid><category><![CDATA[code-story]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Wed, 20 Feb 2013 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
