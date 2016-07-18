@@ -10,7 +10,8 @@
     "cover": "images/cover/cover.jpg"
   },
   "socialnetwork": {
-    "twitter": "https://twitter.com/jcsirot"
+    "twitter": "https://twitter.com/jcsirot",
+    "github": "https://github.com/jcsirot"
   },
   "theme": {
     "name": "ghostium"
