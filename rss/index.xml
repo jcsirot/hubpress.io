@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:45:33 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:50:41 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
@@ -226,7 +226,37 @@
 <div class="content">
 <iframe width="640" height="480" src="https://www.youtube.com/embed/mvOsb9vNIWM?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Vérifier le JIRA avant de faire la release]]></title><description><![CDATA[<div id="preamble">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[jsChessboard 0.2 est disponible]]></title><description><![CDATA[<div class="paragraph">
+<p>J’ai procédé à la release de la bibliothèque jsChessboard en version 0.2. jsChessboard est une bibliothèque qui permet d’interpréter des parties d’échecs et de dessiner des échiquiers, le tout entièrement en javascript en utilisant le tag <code>&lt;canvas&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Les objectifs fixés pour la version 0.3 :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>fournir un plugin jQuery ;</p>
+</li>
+<li>
+<p>permettre d’afficher les numéros de rangées/colonnes ;</p>
+</li>
+<li>
+<p>permettre la personnalisation des pièces, des couleurs ;</p>
+</li>
+<li>
+<p>avoir un <em>vrai viewer</em> <a href="http://fr.wikipedia.org/wiki/Portable_Game_Notation">PGN</a> en HTML5/javascript</p>
+</li>
+<li>
+<p><strong>ajouter des tests unitaires !</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le site du projet : <a href="http://jschessboard.com" class="bare">http://jschessboard.com</a></p>
+</div>
+<div class="paragraph">
+<p>Pour voir la bibliothèque en action, il y quelques démos sur le site du projet <a href="http://jschessboard.com/svn/trunk/examples/operagame.html">ici</a>, <a href="http://jschessboard.com/svn/trunk/examples/checkmate.html">là</a> ou encore <a href="http://jschessboard.com/svn/trunk/examples/fen.html">là</a>.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/06/09/js-Chessboard-02-est-disponible.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/06/09/js-Chessboard-02-est-disponible.html</guid><category><![CDATA[javascript]]></category><category><![CDATA[ html5]]></category><category><![CDATA[ chess]]></category><category><![CDATA[ jsChessboard]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Wed, 09 Jun 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Vérifier le JIRA avant de faire la release]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quand je coiffe ma casquette de <em>release manager</em> je dois m’assurer que le logiciel que je prépare à affubler d’un joli numéro de version est prêt. Le code n’est pas tout ; il existe une multitude de petits détails à vérifier pour satisfaire les critères de qualité demandés : les tests (unitaires, d’intégration) passent ils ? Le <em>coding style</em> a-t-il été bien respecté ? Les dépendences sont-elles à jour ? Je me suis donc fait une <em>release checklist</em> qui détaille point par point toutes ces tâches.</p>
