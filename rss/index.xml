@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 11:08:15 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 11:10:26 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -118,7 +118,9 @@
 </div>
 </div>
 </div>
-<h1 id="_push_docker_image" class="sect0">Push Docker image</h1>
+<div class="sect1">
+<h2 id="_push_docker_image">Push Docker image</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The last step consists in pushing the image to a Docker registry. It can be done with the method <code>push</code>.</p>
 </div>
@@ -147,7 +149,11 @@
 <div class="paragraph">
 <p>The image is pushed and, unless you pushed it to a custom registry, should be available on the <a href="https://hub.docker.com/">Docker hub</a>.</p>
 </div>
-<h1 id="_what_s_next" class="sect0">What&#8217;s next?</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_s_next">What&#8217;s next?</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This example is simple and far from being perfect. Feel free to share suggestions or questions in the comments.</p>
 </div>
@@ -160,6 +166,8 @@
 <p>The workflow script: <a href="https://gist.github.com/jcsirot/4de001d280998f27aa82">https://gist.github.com/jcsirot/4de001d280998f27aa82</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</guid><category><![CDATA[Continuous Delivery]]></category><category><![CDATA[ Jenkins]]></category><category><![CDATA[ Jenkins workflow]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ Docker]]></category><category><![CDATA[ devops]]></category><category><![CDATA[ test]]></category><category><![CDATA[ en]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 23 Aug 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
