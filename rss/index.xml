@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 17:25:38 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 21:03:09 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -481,7 +481,33 @@
 </div>
 <div class="paragraph">
 <p>Enfin, concernant les notes C et F, elles sont principalement dues à des serveurs vulnérables à l&#8217;attaque <a href="https://fr.wikipedia.org/wiki/POODLE">POODLE</a> (sauf Groupama, vulnérable à <a href="https://community.qualys.com/blogs/securitylabs/2009/11/05/ssl-and-tls-authentication-gap-vulnerability-discovered?_ga=1.245541639.2029124093.1429356581">une attaque sur la renégociation TLS</a>). Il n&#8217;y a sans doute pas de vrai risque d&#8217;attaque car les banques disposent d&#8217;autres mécanismes de protection. Toutefois cela ne donne pas une bonne image et n&#8217;incite pas à la confiance&#8201;&#8212;&#8201;et moi-même étant client de la Banque Postale, je m&#8217;interroge.</p>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</guid><category><![CDATA[SSL]]></category><category><![CDATA[ TLS]]></category><category><![CDATA[ security]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/05/09/SSL-et-les-banques.html</guid><category><![CDATA[SSL]]></category><category><![CDATA[ TLS]]></category><category><![CDATA[ security]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[The Secret of Monkey Island dans le navigateur]]></title><description><![CDATA[<div class="paragraph">
+<p>Il y a environ un an, pour apprendre <a href="http://www.dartlang.org/">Dart</a>, je me suis lancé dans un projet un peu fou : réécrire un moteur <a href="http://en.wikipedia.org/wiki/SCUMM">SCUM</a> en Dart en portant le code source du projet open-source <a href="https://github.com/scummvm/scummvm">ScummVM</a>. L&#8217;objectif est de pouvoir jouer à Monkey Island (version française CD, SCUMM version 5) directement dans le navigateur.</p>
+</div>
+<div class="paragraph">
+<p>J&#8217;ai fait une longue pause en attendant que le langage se stabilise et j&#8217;ai repris le code récemment. Voilà une courte vidéo (désolé pour la faible qualité, c&#8217;est mon premier post sur youtube) qui montre ce qui fonctionne pour le moment (pour faire court, le générique du jeu).</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe width="640" height="480" src="https://www.youtube.com/embed/UkZ6v8LHbaU?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>Sur la vidéo on voit qu&#8217;il reste quelques problèmes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un problème de palette de couleur pour les crédits : ils sont écrits en bleu, ils devraient être magenta ;</p>
+</li>
+<li>
+<p>c&#8217;est lent. À mon avis, ce problème est lié à Dartium ou au debugger du Dart Editor. Après compilation avec dart2js ça semble beaucoup plus rapide mais le Javascript produit contient des erreurs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le code n&#8217;est pas encore publié mais sera rapidement <a href="https://github.com/jcsirot/SCUMM-Dart">disponible sur GitHub</a> où pour le moment est hébergé l&#8217;ancienne version.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2013/03/19/The-Secret-of-Monkey-Island-dans-le-navigateur.html</guid><category><![CDATA[dart]]></category><category><![CDATA[ dartlang]]></category><category><![CDATA[ SCUMM]]></category><category><![CDATA[ ScummVM]]></category><category><![CDATA[ SCUMMDart]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 19 Mar 2013 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
