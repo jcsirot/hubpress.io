@@ -87,7 +87,7 @@ The last step consists in pushing the image to a Docker registry. It can be done
 
 In order to configure the registry credentials, go the Jenkins Manager Credentials page. Add a new username/password entry and enter your registry login and password. Click on __Advanced__ to show the ID field and enter a unique identifier.
 
-image::/posts/jenkins-docker-credentials-20150823.png[Docker Hub Credentials]
+image::posts/jenkins-docker-credentials-20150823.png[Docker Hub Credentials]
 
 The `withRegistry` method is also used to pass the registry URL and credentials ID configure above.
 
