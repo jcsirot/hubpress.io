@@ -1,6 +1,6 @@
 = Conférence annotations java – compte rendu
-:hp-tags: 2010-07-07
-:published_at: conference, java
+:hp-tags: conference, java
+:published_at: 2010-07-07
 
 La conférence _Annotations Java_ animée par Olivier Croisier, expert java et auteur du blog http://thecodersbreakfast.net/[The Coders Breakfast], s’est tenue le 29 juin dernier a eu lieu la dans les locaux de http://www.zenika.com/[Zénika].
 
