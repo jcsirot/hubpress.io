@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 21:20:55 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 21:38:35 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -629,7 +629,94 @@
 </div>
 <div class="paragraph">
 <p>Après un weekend passé à migrer manuellement tous les posts (car aucun des outils de migration testés ne fonctionnait correctement), migrer les commentaires, migrer les quelques pages statiques, mettre à jour les DNS, <em>coding-stories.com</em> a fait peau neuve. En espérant surtout trouver un peu plus de temps pour écrire.</p>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/09/30/Migration-du-blog-vers-Octopress-Github.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/09/30/Migration-du-blog-vers-Octopress-Github.html</guid><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 30 Sep 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/09/30/Migration-du-blog-vers-Octopress-Github.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/09/30/Migration-du-blog-vers-Octopress-Github.html</guid><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 30 Sep 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Mocker un serveur de mail avec Dumbster et JUnit]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Récemment, en écrivant des tests d’intégration j’ai rencontré un cas d’utilisation qui arrive fréquemment : un utilisateur s’inscrit à un service Web, un courriel lui est envoyé, il contient une URL permettant de confirmer son inscription. La question est comment tester ça automatiquement, par exemple dans un test <a href="http://seleniumhq.org/">Selenium</a> ?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_la_solution_technique">La solution technique</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Première idée : créer un compte mail dédié pour ce test qu’on va interroger avec une bibliothèque comme <a href="http://www.oracle.com/technetwork/java/javamail/index.html">javamail</a>. Cette solution présente toutefois quelques problèmes. D’abord il va falloir maintenir cette boîte mail dans le temps. Ensuite si le serveur SMTP ou le serveur POP/IMAP est indisponible le test va échouer. Et que va-t-il se passer si deux tests sont lancés en même temps ? Finalement une solution qui me semble bien fragile.</p>
+</div>
+<div class="paragraph">
+<p>Seconde idée : <em>mocker</em> un serveur SMTP qu’on ne lance que le temps du test. Après quelques rapides recherches j’ai trouvé <a href="http://quintanasoft.com/dumbster/">Dumbster</a>, un serveur qui répond aux requêtes SMTP mais sans relayer les messages envoyés. Ceux-ci sont stockés et peuvent ensuite être examinés.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_int_gration_avec_junit">Intégration avec JUnit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour intégrer Dumbster avec JUnit, j’ai écrit une <a href="http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/TestRule.html"><code>TestRule</code></a>. Les TestRule de JUnit sont des classes qui permettent de modifier la façon dont une méthode de test (ou un ensemble de méthodes) va se comporter en exécutant du code avant ou après le test. C’est un moyen très pratique de factoriser des comportements qu’on est amené à utiliser souvent dans les tests : par exemple <a href="http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/TemporaryFolder.html"><code>TemporaryFolder</code></a> permet de créer des répertoires et des fichiers temporaire et de les supprimer à la fin du test, <a href="http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/Timeout.html"><code>Timeout</code></a> s’assure que les tests ne dépasseront une durée maximale donnée…</p>
+</div>
+<div class="paragraph">
+<p>Pour le mock de serveur, j’ai créé une classe <code>MockSMTPRule</code> qui étend la classe abstraite <a href="http://kentbeck.github.com/junit/javadoc/latest/org/junit/rules/ExternalResource.html"><code>ExternalResource</code></a>. Cette classe fournit deux méthodes <code>before</code> et <code>after</code> qui s’exécutent respectivement avant et après la méthode de test ; parfait donc pour gérer des ressources externe au test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class MockSMTPRule extends ExternalResource
+{
+     public SimpleSmtpServer server;
+
+    /** Lance le serveur SMTP sur le port 2525 avant le test */
+    protected void before() throws Throwable
+    {
+        super.before();
+        server = SimpleSmtpServer.start(2525);
+    }
+
+    /** Arrête le serveur une fois le test terminé */
+    protected void after()
+    {
+        server.stop();
+        super.after();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il faudra également configurer l’application web pour utiliser le serveur qui sera lancé sur localhost, port 2525.</p>
+</div>
+<div class="paragraph">
+<p>Ensuite, utiliser cette <code>TestRule</code> dans un test est extrêmement simple. Il suffit de créer une variable d’instance publique dans la classe de test et de la préfixer avec l’annotation <code>@Rule</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class RegistrationTest extends JUnit4TestBase
+{
+    @Rule
+    public MockSMTPRule smtp = new MockSMTPRule();
+
+    /** Test the registration */
+    @Test
+    public void should_send_confirmation_email()
+    {
+        /* Ouvrir la page à tester */
+        openPage("http://localhost:8080/register/");
+        /* Saisir les informations sur le nouvel utilisateur */
+        /* ... */
+        /* On teste qu'un mail a été reçu */
+        assertEquals(1, smtp.server.getReceivedEmailSize());
+        SmtpMessage msg = (SmtpMessage) smtp.server.getReceivedEmail().next();
+        /* On teste les champs To, From et Subject */
+        assertEquals("[Service Trop Bien] Confirmation de votre inscription", msg.getHeaderValue("Subject"));
+        assertEquals("john@example.com", msg.getHeaderValue("To"));
+        assertEquals("no-reply@servicetropbien.com", msg.getHeaderValue("From"));
+        /* On teste le corps du mail */
+        assertTrue(msg.getBody().contains("Bienvenue"));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le code complet de la classe est ici : <a href="https://gist.github.com/3246719" class="bare">https://gist.github.com/3246719</a></p>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</guid><category><![CDATA[java]]></category><category><![CDATA[ junit]]></category><category><![CDATA[ mock]]></category><category><![CDATA[ qualite]]></category><category><![CDATA[ test]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 05 Aug 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
