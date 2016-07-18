@@ -6,7 +6,8 @@
   },
   "site": {
     "title": "Coding Stories",
-    "description": "Singe savant en ingénierie logicielle"
+    "description": "Singe savant en ingénierie logicielle",
+    "cover": "images/cover/cover.jpg"
   },
   "socialnetwork": {
     "twitter": "jcsirot"
