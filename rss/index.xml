@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 17 Jul 2016 12:27:06 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:32:29 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
@@ -226,7 +226,31 @@
 <div class="content">
 <iframe width="640" height="480" src="https://www.youtube.com/embed/mvOsb9vNIWM?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Android 2.1 passe en tête]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Crible d’Ératosthène en Scala]]></title><description><![CDATA[<div class="paragraph">
+<p>Le <a href="https://fr.wikipedia.org/wiki/Crible_d%27%C3%89ratosth%C3%A8ne">crible d’Ératosthène</a> est un grand classique des langages fonctionnels :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">def primes (end: Int): Seq[Int] = {
+  def sieve (list: Seq[Int]): Seq[Int] = {
+    list match {
+      case Nil =&gt; List()
+      case x :: xs =&gt; List(x) ++ sieve(xs.filter(_ % x != 0))
+    }
+  }
+  sieve(List.range(2, end))
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Faisons un test :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-scala" data-lang="scala">scala&gt; primes(100)
+res0: Seq[Int] = List(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)</code></pre>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/05/20/Crible-d-Eratosthene-en-Scala.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/05/20/Crible-d-Eratosthene-en-Scala.html</guid><category><![CDATA[scala]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 20 May 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Android 2.1 passe en tête]]></title><description><![CDATA[<div class="paragraph">
 <p>Google vient de <a href="http://developer.android.com/resources/dashboard/platform-versions.html">mettre à jour</a> ses données concernant la répartition des différentes versions d’android :</p>
 </div>
 <div class="imageblock">
