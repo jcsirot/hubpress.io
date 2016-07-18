@@ -1,4 +1,166 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 11:01:31 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 11:08:15 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
+</div>
+<div class="paragraph">
+<p><em>Disclaimer</em>: I&#8217;m using a maven project for this example because maven is a tool I&#8217;m comfortable with. This post could be adapted to python, rails or whatever-you-want project with minor efforts.</p>
+</div>
+<div class="paragraph">
+<p>First of all, we need to install the required plugins in Jenkins:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Workflow: Aggregator</p>
+</li>
+<li>
+<p>CloudBees Docker Workflow</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This sample workflow is simple and composed of 4 steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build and unit tests</p>
+</li>
+<li>
+<p>Build Docker image</p>
+</li>
+<li>
+<p>Acceptance Tests</p>
+</li>
+<li>
+<p>Push Docker image</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_and_unit_tests">Build and unit tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a new Workflow job enter this script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">node {
+    /* Configure the JDK to use. 'JDK8' is the symbolic name under which the JDK
+     * is defined in the global Jenkins configuration. */
+    env.JAVA_HOME="${tool 'JDK8'}"
+
+    stage 'Build'
+    /* Clone the project from github */
+    git url: 'https://github.com/jcsirot/atmosphere-calculator.git', branch: '0.1.0'
+    /* Select the maven configuration. 'M3' is the symbolic name used the
+     * global Jenkins configuration. */
+    def mvnHome = tool "M3"
+    /* Run maven: build and run the unit tests  */
+    sh "${mvnHome}/bin/mvn clean package"
+    /* This is the syntax for using a generic step. Here the test results are archived. */
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This short script runs maven to build the jars and to execute the unit tests. Now we are ready to build the Docker image.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_docker_image">Build Docker image</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CloudBees Docker Workflow Plugin provides a global variable <code>docker</code> which offers access to the common Docker functions in workflow scripts. For a comprehensive description of the plugin and the available commands, look at the <a href="http://documentation.cloudbees.com/docs/cje-user-guide/docker-workflow.html">plugin guide</a>.</p>
+</div>
+<div class="paragraph">
+<p>To build the image we call <code>build</code> on the <code>docker</code> variable. Two parameters are passed: the image name (with the Docker notation <code>[registry/]image[:tag]</code>) and the directory where is located the <code>Dockerfile</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">node {
+    /* ... */
+    stage 'Build Docker image'
+    def image = docker.build('jcsirot/atmo-calc:snapshot', '.')
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The call returns a handle on the built image so we can work with it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acceptance_tests">Acceptance Tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to execute the acceptance tests we wants to run a container from our newly built image. The <code>withRun</code> method can be invoked on the image handle. It is possible to pass the <code>docker run</code> parameters like port mapping or volumes configuration.</p>
+</div>
+<div class="paragraph">
+<p><code>withRun</code> also takes a code block. The container is started at the begining of the block, then the code in the block is executed and the container is stopped at the end of the block. Note that the block is executed on the Jenkins node, <em>not inside the container</em>. Use the <code>inside</code> method on the image handle to execute code inside the container.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">node {
+    /* ... */
+    stage 'Acceptance Tests'
+    image.withRun('-p 8181:8181') {c -&gt;
+        sh "${mvnHome}/bin/mvn verify"
+    }
+    /* Archive acceptance tests results */
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_push_docker_image" class="sect0">Push Docker image</h1>
+<div class="paragraph">
+<p>The last step consists in pushing the image to a Docker registry. It can be done with the method <code>push</code>.</p>
+</div>
+<div class="paragraph">
+<p>In order to configure the registry credentials, go the Jenkins Manager Credentials page. Add a new username/password entry and enter your registry login and password. Click on <em>Advanced</em> to show the ID field and enter a unique identifier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/posts/jenkins-docker-credentials-20150823.png" alt="Docker Hub Credentials">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>withRegistry</code> method is also used to pass the registry URL and credentials ID configure above.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">node {
+    /* ... */
+    stage 'Push image'
+    docker.withRegistry("https://registry.hub.docker.com", "docker-registry") {
+        image.push()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The image is pushed and, unless you pushed it to a custom registry, should be available on the <a href="https://hub.docker.com/">Docker hub</a>.</p>
+</div>
+<h1 id="_what_s_next" class="sect0">What&#8217;s next?</h1>
+<div class="paragraph">
+<p>This example is simple and far from being perfect. Feel free to share suggestions or questions in the comments.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The project I used for this sample: <a href="https://github.com/jcsirot/atmosphere-calculator">https://github.com/jcsirot/atmosphere-calculator</a></p>
+</li>
+<li>
+<p>The workflow script: <a href="https://gist.github.com/jcsirot/4de001d280998f27aa82">https://gist.github.com/jcsirot/4de001d280998f27aa82</a></p>
+</li>
+</ul>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2015/08/23/Continuous-Delivery-with-Jenkins-workflow-and-Docker.html</guid><category><![CDATA[Continuous Delivery]]></category><category><![CDATA[ Jenkins]]></category><category><![CDATA[ Jenkins workflow]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ Docker]]></category><category><![CDATA[ devops]]></category><category><![CDATA[ test]]></category><category><![CDATA[ en]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 23 Aug 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
