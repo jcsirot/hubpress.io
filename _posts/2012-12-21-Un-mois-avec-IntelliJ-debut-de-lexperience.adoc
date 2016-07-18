@@ -1,4 +1,4 @@
-= Un mois avec IntelliJ -- début de l'expérience
+= Un mois avec IntelliJ - début de l'expérience
 :hp-tags: NetBeans, IntelliJ, IDE
 :published_at: 2012-12-21
 
