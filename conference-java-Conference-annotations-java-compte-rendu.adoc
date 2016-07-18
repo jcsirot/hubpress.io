@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Conférence annotations java – compte rendu</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Conférence annotations java – compte rendu">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Conférence annotations java – compte rendu">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1468839655873"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1468839655873"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1468839655873"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1468839655873"></script>
+
+    <link rel="canonical" href="https://jcsirot.github.io/hubpress.io/conference-java-Conference-annotations-java-compte-rendu.adoc" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Coding Stories" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Conférence annotations java – compte rendu" />
+    <meta property="og:description" content="La conférence Annotations Java animée par Olivier Croisier, expert java et auteur du blog The Coders Breakfast, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de Zénika. Les annotations, je pensais bien connaitre… J’avais tort. Après s’être présenté et avoir présenté Zénika," />
+    <meta property="og:url" content="https://jcsirot.github.io/hubpress.io/conference-java-Conference-annotations-java-compte-rendu.adoc" />
+    <meta property="article:tag" content="2010-07-07" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Conférence annotations java – compte rendu" />
+    <meta name="twitter:description" content="La conférence Annotations Java animée par Olivier Croisier, expert java et auteur du blog The Coders Breakfast, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de Zénika. Les annotations, je pensais bien connaitre… J’avais tort. Après s’être présenté et avoir présenté Zénika," />
+    <meta name="twitter:url" content="https://jcsirot.github.io/hubpress.io/conference-java-Conference-annotations-java-compte-rendu.adoc" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Coding Stories" href="https://jcsirot.github.io/hubpress.io/rss/" />
+  </head>
+  <body class="post-template tag-2010-07-07">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" title="Coding Stories" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="jcsirot" title="Twitter" target="_blank">
+              <i class="fa fa-twitter"></i>Twitter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-2010-07-07">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="Invalid date" itemprop="datePublished">
+                  Invalid date
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="https://jcsirot.github.io/hubpress.io/tag/2010-07-07/">2010-07-07</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="https://jcsirot.github.io/hubpress.io/conference-java-Conference-annotations-java-compte-rendu.adoc" itemprop="url" data-pjax title="Conférence annotations java – compte rendu">Conférence annotations java – compte rendu</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <a href="http://www.coding-stories.com/" class="post-author-name">
+                  Jean-Christophe Sirot
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div class="paragraph">
+<p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
+</div>
+<div class="paragraph">
+<p>Les annotations, je pensais bien connaitre… J’avais tort.</p>
+</div>
+<div class="paragraph">
+<p>Après s’être présenté et avoir présenté Zénika, Olivier commence par un rappel historique : en matière de méta-programmation, il existait déjà l’API <a href="http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/">Doclets</a> qui permet d’ajouter ses propres tags dans les commentaires du code. Les développeurs ont vite détourné cette fonctionnalité, souvent pour permettre la génération automatique de code. A partir de Java 5 sont apparues les annotations.</p>
+</div>
+<div class="paragraph">
+<p>Dans la bibliothèque Java standard on trouve finalement assez peu d’annotations : <code>@Override</code>, <code>@SuppressWarnings</code> et <code>@Deprecated</code> ainsi que quelques unes dans le package <code>java.lang.annotation</code> (des <em>meta-annotations</em>, c’est à dire des annotations que l’on place sur d’autres annotations comme <code>Target</code> ou <code>Retention). Avec Java 6, on en voit arriver d’autres dans les packages `javax.annotation</code> ou <code>javax.xml.bind.annotation</code>. Mais ce sont surtout les frameworks et autres standards qui font la part belle aux annotations : Hibernate, JPA, JDO, Spring, Guice, J2EE6&#8230;&#8203; Le plus souvent il s&#8217;agit de remplacer de longs fichiers de description en XML.</p>
+</div>
+<div class="paragraph">
+<p>Ensuite Olivier nous a présenté la syntaxe et les règles d&#8217;usage des annotations : elles peuvent se placer partout et si on les voit souvent sur des classes, des interfaces ou des méthodes, il est aussi possible d&#8217;annoter les packages en utilisant un fichier <a href="http://java.sun.com/docs/books/jls/third_edition/html/packages.html">package-info.java</a>, les constructeurs, les champs et également les paramètres de méthodes. Les annotations peuvent être paramétrées et ces paramètres peuvent avoir des valeurs par défaut. Valeurs par défaut qui peuvent même être des expressions si tant est que cette expression est résolue à la compilation. Toutefois il existe deux limites : les paramètres des annotations ne peuvent être null (pourquoi ? Personne ne semble vraiment savoir) et on ne peut annoter un élément qu&#8217;avec une seule annotation d&#8217;un même type. Mais il exste une astuce pour contourner le problème : écrire des annotations qui prennent un tableau d&#8217;annotations en paramètre.</p>
+</div>
+<div class="paragraph">
+<p>Puis on passe au développement d&#8217;annotations personnalisées.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public @interface MyAnnotation {
+    String aString() default "FooBar";
+    int aInteger() default 21 + 21;
+}
+
+@MyAnnotation(aString="An arbitrary String", aInteger=27)
+public class MyAnnotedClass {
+    /* .... */
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quand on a un unique paramètre dans l&#8217;annotation on peut simplifier un peu la syntaxe en nommant ce paramètre <code>value</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public @interface MyAnnotation {
+    String value();
+}
+
+@MyAnnotation("Hello world")
+public class MyAnnotedClass {
+    /* .... */
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On peut également annoter nos propres annotations avec les meta-annotations définies dans la bibliothèque standard :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Target</code> indique sur quels éléments on peut placer l&#8217;annotation (classes, méthodes&#8230;&#8203;). Par défaut on peut mettre une annotation partout.</p>
+</li>
+<li>
+<p><code>Retention</code> indique la durée de vie de l&#8217;annotation : présence uniquement dans le code source, dans le bytecode de la classe ou également au runtime.</p>
+</li>
+<li>
+<p><code>Documented</code> indique si l&#8217;annotation apparaitra dans la javadoc.</p>
+</li>
+<li>
+<p>`Inherited indique si l&#8217;annotation est héritée par les sous-classes des classes ou elle est définie. Limitation : on ne peut pas hériter d&#8217;une annotation placée sur un interface en implémentant cette interface.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finalement Olivier est passé à des exemples concrets d&#8217;utilisation des annotations.</p>
+</div>
+<div class="paragraph">
+<p>D&#8217;abord à la compilation, les annotations permettent d'étendre les fonctionnalités du compilateur Java. Java 6 propose un mécanisme appelé <em>Pluggable Annotation Processing</em> qui permet de brancher ses propres modules dans le compilateur. Cela se passe dans les packages <code>javax.annotation</code> et <code>javax.annotation.processing</code>. Il suffit d'écire une implémentation de la classe <code>javax.annotation.processing.Processor</code> (ou étendre <code>AbstractProcessor</code>) et de la mettre dans le classpath du compilateur (les implementations de <code>Processor</code> sont découvertes par le compilateur en utilisant le <a href="http://www/docs/java/docs-1.6.0/api/index.html?java/util/ServiceLoader.html">mécanisme de chargement de service</a>). L&#8217;interface <code>Processor</code> permet d&#8217;accéder à l&#8217;<a href="http://fr.wikipedia.org/wiki/Abstract_syntax_tree">AST</a> du code en cours de compilation. Une utilisation possible est la vérification programmatique de règles de design : s&#8217;assurer par exemple que toutes les classes d&#8217;un package annoté implémentent <code>Serializable</code> ou encore que toutes les classes annotées par un <code>@Loadable</code> possède bien une méthode <code>load</code> avec les bons paramètres.</p>
+</div>
+<div class="paragraph">
+<p>Toutefois cette approche d&#8217;extension du compilateur a ses limites : il n&#8217;est pas possible de modifier le code existant (on ne peut qu&#8217;en générer) et certains bugs pouvant être bloquant trainent depuis longtemps (cela semble corrigé dans Java 7).</p>
+</div>
+<div class="paragraph">
+<p>Second exemple, en runtime cette fois, la recherche d&#8217;annotations par introspection. Pour cela il ne faut pas oublier d&#8217;ajouter la méta-annotation <code>@Rentention(RententionPolicy.RUNTIME)</code> pour que celle-ci survive à l&#8217;exécution dans la JVM. Les cas d&#8217;utilisation tournent cette fois plus vers la programmation orientée <em>POJO</em> (plus besoin d&#8217;implémenter telle interface, on appelle les méthodes par introspection en recherchant celles qui sont annotées), le mapping d&#8217;objets java vers autre chose (par exemple java vers base de données avec JPA ou JDO) ou encore la configuration des frameworks (<code>@Inject</code> dans Guice par exemple).</p>
+</div>
+<div class="paragraph">
+<p>En guise de dessert, Olivier nous a proposé une jolie demo d&#8217;injection d&#8217;annotation en runtime dans une classe. Il s&#8217;agit surtout d&#8217;une <em>proof of concept</em> et, de son propre aveux, il n&#8217;a pas trouvé de vrai use case à cela.</p>
+</div>
+<div class="paragraph">
+<p>Les slides de la présentation et les exemples de code sont disponibles sur le <a href="http://blog.zenika.com/index.php?post/2010/07/05/Conf%C3%A9rence:-Les-annotations-enfin-expliqu%C3%A9es-simplement">blog de Zenika</a>.</p>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://www.coding-stories.com/" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Jean-Christophe Sirot</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                  <p class="post-author-location">Paris</p>
+                  <p class="post-author-website">
+                    <a href="http://www.coding-stories.com/" rel="nofollow">http://www.coding-stories.com/</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">Invalid date</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder">Coding Stories</span>. 2016. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1468839655873"></script>
+
+
+  </body>
+</html>
