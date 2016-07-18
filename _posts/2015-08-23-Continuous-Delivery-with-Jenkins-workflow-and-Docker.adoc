@@ -81,8 +81,7 @@ node {
 }
 ----
 
-Push Docker image
-=================
+== Push Docker image
 
 The last step consists in pushing the image to a Docker registry. It can be done with the method `push`.
 
@@ -105,8 +104,7 @@ node {
 
 The image is pushed and, unless you pushed it to a custom registry, should be available on the https://hub.docker.com/[Docker hub].
 
-What's next?
-============
+== What's next?
 
 This example is simple and far from being perfect. Feel free to share suggestions or questions in the comments.
 
