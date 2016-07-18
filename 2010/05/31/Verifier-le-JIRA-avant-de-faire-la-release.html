@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Vérifier le JIRA avant de faire la release</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Vérifier le JIRA avant de faire la release">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Vérifier le JIRA avant de faire la release">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1468838733017"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1468838733017"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1468838733017"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1468838733017"></script>
+
+    <link rel="canonical" href="https://jcsirot.github.io/hubpress.io/2010/05/31/Verifier-le-JIRA-avant-de-faire-la-release.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Coding Stories" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vérifier le JIRA avant de faire la release" />
+    <meta property="og:description" content="Quand je coiffe ma casquette de release manager je dois m’assurer que le logiciel que je prépare à affubler d’un joli numéro de version est prêt. Le code n’est pas tout ; il existe une multitude de petits détails à vérifier pour satisfaire les critères de qualité demandés" />
+    <meta property="og:url" content="https://jcsirot.github.io/hubpress.io/2010/05/31/Verifier-le-JIRA-avant-de-faire-la-release.html" />
+    <meta property="article:tag" content="jira" />
+    <meta property="article:tag" content=" maven" />
+    <meta property="article:tag" content=" maven-enforcer-plugin" />
+    <meta property="article:tag" content=" maven-release-plugin" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Vérifier le JIRA avant de faire la release" />
+    <meta name="twitter:description" content="Quand je coiffe ma casquette de release manager je dois m’assurer que le logiciel que je prépare à affubler d’un joli numéro de version est prêt. Le code n’est pas tout ; il existe une multitude de petits détails à vérifier pour satisfaire les critères de qualité demandés" />
+    <meta name="twitter:url" content="https://jcsirot.github.io/hubpress.io/2010/05/31/Verifier-le-JIRA-avant-de-faire-la-release.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Coding Stories" href="https://jcsirot.github.io/hubpress.io/rss/" />
+  </head>
+  <body class="post-template tag-jira tag-maven tag-maven-enforcer-plugin tag-maven-release-plugin">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" title="Coding Stories" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="jcsirot" title="Twitter" target="_blank">
+              <i class="fa fa-twitter"></i>Twitter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-jira tag-maven tag-maven-enforcer-plugin tag-maven-release-plugin">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2010-05-31" itemprop="datePublished">
+                  6 years ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="https://jcsirot.github.io/hubpress.io/tag/jira/">jira</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/maven/"> maven</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/maven-enforcer-plugin/"> maven-enforcer-plugin</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/maven-release-plugin/"> maven-release-plugin</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="https://jcsirot.github.io/hubpress.io/2010/05/31/Verifier-le-JIRA-avant-de-faire-la-release.html" itemprop="url" data-pjax title="Vérifier le JIRA avant de faire la release">Vérifier le JIRA avant de faire la release</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <a href="http://www.coding-stories.com/" class="post-author-name">
+                  Jean-Christophe Sirot
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quand je coiffe ma casquette de <em>release manager</em> je dois m’assurer que le logiciel que je prépare à affubler d’un joli numéro de version est prêt. Le code n’est pas tout ; il existe une multitude de petits détails à vérifier pour satisfaire les critères de qualité demandés : les tests (unitaires, d’intégration) passent ils ? Le <em>coding style</em> a-t-il été bien respecté ? Les dépendences sont-elles à jour ? Je me suis donc fait une <em>release checklist</em> qui détaille point par point toutes ces tâches.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_automatisez">Automatisez !</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En bon informaticien pragmatique je connais le bug de l’interface chaise-clavier : tout ce qui est fait à la main est une intarissable source de problèmes et il m’arrive parfois de faire une bêtise, ce qui a le don de me mettre de fort mauvaise humeur.</p>
+</div>
+<div class="paragraph">
+<p>Comme je suis -=fainéant=- consciencieux, je cherche donc à automatiser le maximum de tâches. Dans ma checklist se trouve le point suivant : s’assurer que tous les tickets dans le JIRA sont fermés. Mon objectif : annuler le lancement de la release quand cette condition n’est pas remplie.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jira_par_rpc">JIRA par RPC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans une premier temps il faut accéder à JIRA pour récupérer la liste des issues qui nous intéressent. Pour cela JIRA met à disposition deux interfaces RPC : XML-RPC et SOAP. On utilisera SOAP, non pas par plaisir car je trouve XML-RPC beaucoup plus simple, mais parce que l’API disponible par XML-RPC est moins riche et surtout ne fournit pas la méthode dont on a besoin.</p>
+</div>
+<div class="paragraph">
+<p>Le descripteur WSDL est normalement servit par JIRA. En supposant que JIRA est installé à l’URL <code><a href="http://jira.chelonix.com/" class="bare">http://jira.chelonix.com/</a></code> alors le WSDL peut être téléchargé à l’URL suivante :</p>
+</div>
+<div class="paragraph">
+<p><code><a href="http://jira.chelonix.com/rpc/soap/jirasoapservice-v2?wsdl" class="bare">http://jira.chelonix.com/rpc/soap/jirasoapservice-v2?wsdl</a></code></p>
+</div>
+<div class="paragraph">
+<p>Pour utiliser l’API SOAP de JIRA il va falloir enrichir son pom.xml de quelques dépendances à la bibliothèque <a href="http://ws.apache.org/axis/">Axis</a> de la fondation Apache.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">    &lt;!-- Axis dependencies --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;axis&lt;/groupId&gt;
+      &lt;artifactId&gt;axis&lt;/artifactId&gt;
+      &lt;version&gt;1.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;axis&lt;/groupId&gt;
+      &lt;artifactId&gt;axis-jaxrpc&lt;/artifactId&gt;
+      &lt;version&gt;1.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;axis&lt;/groupId&gt;
+      &lt;artifactId&gt;axis-saaj&lt;/artifactId&gt;
+      &lt;version&gt;1.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;axis&lt;/groupId&gt;
+      &lt;artifactId&gt;axis-wsdl4j&lt;/artifactId&gt;
+      &lt;version&gt;1.5.1&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Toujours dans le <code>pom.xml</code> on ajoute un appel au plugin axistools-maven-plugin. Lors de la phase <em>generate-sources</em>, le fichier WSDL va être utilisé pour auto-générer les classes du client SOAP.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+        &lt;artifactId&gt;axistools-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.3&lt;/version&gt;
+        &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;axis&lt;/groupId&gt;
+            &lt;artifactId&gt;axis&lt;/artifactId&gt;
+            &lt;version&gt;1.3&lt;/version&gt;
+          &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+        &lt;configuration&gt;
+          &lt;wsdlFiles&gt;
+            &lt;wsdlFile&gt;jirasoapservice-v2.wsdl&lt;/wsdlFile&gt;
+          &lt;/wsdlFiles&gt;
+          &lt;packageSpace&gt;com.atlassian.jira.rpc.soap.client&lt;/packageSpace&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;wsdl2java-generation&lt;/id&gt;
+            &lt;phase&gt;generate-sources&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;wsdl2java&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le plugin s’attend à trouver le WSDL dans le répertoire <code>${basedir}/src/main/wsdl</code>. Pensez à l’y mettre ou à modifier la propriété <code>sourceDirectory</code> dans la configuration du plugin.
+Une fois que le projet a été configuré, il ne reste plus qu’à coder :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.chelonix.jira.rpc.soap.client;
+
+import com.atlassian.jira.rpc.exception.RemoteException;
+import com.atlassian.jira.rpc.soap.client.JiraSoapService;
+import com.atlassian.jira.rpc.soap.client.JiraSoapServiceService;
+import com.atlassian.jira.rpc.soap.client.JiraSoapServiceServiceLocator;
+import com.atlassian.jira.rpc.soap.client.RemoteIssue;
+import java.net.URL;
+
+/**
+ * A JIRA SOAP client checking for opened issues for a project/version couple.
+ */
+public class IssueChecker
+{
+    private static final String URL = "http://jira.chelonix.com/rpc/soap/jirasoapservice-v2";
+
+    public static void main(String[] args)
+    {
+        try {
+            IssueCherker checker = new IssueChecker();
+            RemoteIssue[] issues = checker.check(args[0], args[1]);
+            for (RemoteIssue issue: issues) {
+                System.out.printf("Opened issue: %s", issue.getKey());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private JiraSoapService jiraSoapService;
+
+    public IssueChecker() throws Exception
+    {
+        JiraSoapServiceService jiraSoapServiceLocator =
+            new JiraSoapServiceServiceLocator();
+        jiraSoapService = jiraSoapServiceLocator.getJirasoapserviceV2(new URL(URL));
+    }
+
+    public RemoteIssue[] check(String projectKey, String version) throws RemoteException
+        String token = jiraSoapService.login("login", "password");
+        String query = MessageFormat.format(
+            "project=''{0}'' AND FixVersion=''{1}'' AND status!=''Closed''",
+            project, version);
+        return jiraSoapService.getIssuesFromJqlSearch(token, query, 100);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pour plus de détails, la documentation des services RPC de JIRA est là : <code><a href="http://confluence.atlassian.com/display/JIRA/JIRA+RPC+Services" class="bare">http://confluence.atlassian.com/display/JIRA/JIRA+RPC+Services</a></code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cr_er_des_r_gles">Créer des règles…</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Maintenant qu’on peut savoir s’il reste des issues ouvertes pour un projet/version donné, il faut faire en sorte que l’appel <code>mvn release:prepare</code> échoue quand c’est le cas. Pour cela on va utiliser le plugin <a href="http://maven.apache.org/plugins/maven-enforcer-plugin/)">maven-enforcer-plugin</a>. Ce plugin permet de subordonner la compilation à la vérification d’un certain nombre de contraintes telles que la version de maven, la version du JDK, la présence de certains fichiers, etc.</p>
+</div>
+<div class="paragraph">
+<p>Le plugin permet également d’ajouter ses propres règles. On peut donc en créer une se basant sur la classe <code>IssueChecker</code>.</p>
+</div>
+<div class="paragraph">
+<p>D’abord on ajoute quelques dépendances au pom.xml :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">  &lt;dependencies&gt;
+    &lt;!-- Enforcer dependencies --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.maven.enforcer&lt;/groupId&gt;
+      &lt;artifactId&gt;enforcer-api&lt;/artifactId&gt;
+      &lt;version&gt;${api.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-project&lt;/artifactId&gt;
+      &lt;version&gt;${maven.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-core&lt;/artifactId&gt;
+      &lt;version&gt;${maven.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-artifact&lt;/artifactId&gt;
+      &lt;version&gt;${maven.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-plugin-api&lt;/artifactId&gt;
+      &lt;version&gt;${maven.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.codehaus.plexus&lt;/groupId&gt;
+      &lt;artifactId&gt;plexus-container-default&lt;/artifactId&gt;
+      &lt;version&gt;1.0-alpha-9&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Puis il faut écrire une implémentation de l’interface <a href="http://maven.apache.org/enforcer/enforcer-api/apidocs/index.html">EnforcerRule</a> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package com.chelonix.maven.enforcer.rule;
+
+import java.text.MessageFormat;
+import com.atlassian.jira.rpc.exception.RemoteException;
+import com.atlassian.jira.rpc.soap.client.RemoteIssue;
+import org.apache.maven.enforcer.rule.api.EnforcerRule;
+import org.apache.maven.enforcer.rule.api.EnforcerRuleException;
+import org.apache.maven.enforcer.rule.api.EnforcerRuleHelper;
+import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluationException;
+
+/**
+ * Implementation of the EnforcerRule verifying whether there is any remaining unclosed issues.
+ */
+public class JiraOpenIssuesRule implements EnforcerRule
+{
+    private boolean shouldIfail = false;
+
+    public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException
+    {
+        try {
+            MavenProject project = (MavenProject)helper.evaluate("${project}");
+            String version = project.getVersion();
+            String projectKey = (String)helper.evaluate("${jira.project.key}");
+            IssueChecker checker = new IssueChecker();
+            RemoteIssue[] issues = checker.check(projectKey, version);
+            shouldIfail = issues.length &gt; 0;
+        } catch (ExpressionEvaluationException e) {
+            throw new EnforcerRuleException("Unable to lookup an expression " +
+                e.getMessage(), e);
+        } catch (RemoteException re) {
+            throw new EnforcerRuleException("SOAP Remote exception " +
+                re.getMessage(), re);
+        }
+        if (this.shouldIfail) {
+            throw new EnforcerRuleException("Remaining unclosed issues");
+        }
+    }
+
+    public boolean isCacheable()
+    {
+        return false;
+    }
+
+    public boolean isResultValid(EnforcerRule er)
+    {
+        return false;
+    }
+
+    public String getCacheId()
+    {
+        return "";
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pensez à ajouter une propriété <code>jira.project.key</code> indiquant la clé du projet JIRA dans le <code>pom.xml</code> du projet dont on fait la release.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__et_les_faire_appliquer">… Et les faire appliquer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finalement il n’y a plus qu’à appeler le plugin Enforcer lors de la release. Dans le <code>pom.xml</code> du projet à releaser on va ajouter le code suivant :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;build&gt;
+    &lt;plugins&gt;
+    ...
+        &lt;plugin&gt;
+          &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+          &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.0&lt;/version&gt;
+          &lt;configuration&gt;
+            &lt;preparationGoals&gt;clean verify enforcer:enforce&lt;/preparationGoals&gt;
+            &lt;arguments&gt;-Prelease&lt;/arguments&gt;
+            &lt;goals&gt;deploy&lt;/goals&gt;
+            &lt;autoVersionSubmodules&gt;true&lt;/autoVersionSubmodules&gt;
+          &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    ...
+    &lt;plugins&gt;
+&lt;build&gt;
+
+&lt;profile&gt;
+  &lt;id&gt;releaseVerify&lt;/id&gt;
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt;
+        &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;com.chelonix.maven.enforcer&lt;/groupId&gt;
+            &lt;artifactId&gt;jira-rules&lt;/artifactId&gt;
+            &lt;version&gt;${jirarules.version}&lt;/version&gt;
+          &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+        &lt;configuration&gt;
+          &lt;rules&gt;
+            &lt;myCustomRule implementation="com.chelonix.maven.enforcer.rule.JiraOpenIssuesRule"&gt;
+              &lt;shouldIfail&gt;false&lt;/shouldIfail&gt;
+            &lt;/myCustomRule&gt;
+          &lt;/rules&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/profile&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quelques remarques : j’ai créé un profil <code>releaseVerify</code> afin de définir des règles utilisées uniquement lors de la release. Ensuite j’ai ajouté l’appel <code>enforcer:enforce</code> au paramètre de configuration <code>preparationGoals. Ce paramètre permet de définir une liste de <em>goals</em> à exécuter lors de `release:prepare</code>. Par défaut ce sont les goals <code>clean verify</code> qui sont exécutés. Enfin j’ai ajouté le paramètre arguments avec la valeur <code>-PreleaseVerify</code> pour forcer l’usage du profil.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Désormais toute tentative de release avec des tickets encore ouverts dans le JIRA va échouer. Cela ne me dispense pas de faire la vérification mais me prémunit contre un éventuel oubli. Toutefois le code est encore loin d’être parfait (par exemple il y a un risque de NullPointerException quand <code>jira.project.key</code> n’est pas défini).</p>
+</div>
+</div>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://www.coding-stories.com/" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Jean-Christophe Sirot</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                  <p class="post-author-location">Paris</p>
+                  <p class="post-author-website">
+                    <a href="http://www.coding-stories.com/" rel="nofollow">http://www.coding-stories.com/</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">May 31, 2010</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder">Coding Stories</span>. 2016. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1468838733017"></script>
+
+
+  </body>
+</html>
