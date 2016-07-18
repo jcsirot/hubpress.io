@@ -69,4 +69,124 @@ Et qu'en est-il des banques françaises ? En utilisant le service https://www.ss
 | *NO* {set:cellbgcolor:gray}
 | *NO* {set:cellbgcolor:gray}
 
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.ca-paris.fr&hideResults=on[www.ca-paris.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* ** {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *YES* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.cic.fr&s=145.226.109.155&hideResults=on[www.cic.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *YES* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.secure.bnpparibas.net&s=159.50.16.33&hideResults=on[www.secure.bnpparibas.net]  {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.caisse-epargne.fr&s=91.135.188.224&hideResults=on[www.caisse-epargne.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.monabanq.com&s=145.226.99.116&hideResults=on[www.monabanq.com] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.macif.fr&hideResults=on[www.macif.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *YES* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.hsbc.fr&s=91.214.6.232[www.hsbc.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* ** {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *YES* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=particuliers.secure.lcl.fr&hideResults=on[particuliers.secure.lcl.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *YES* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=creditmutuel.fr&s=145.226.45.139&hideResults=on[www.creditmutuel.fr] {set:cellbgcolor:orange}
+| *B* {set:cellbgcolor:orange}
+| *PASS* {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
+| https://www.ssllabs.com/ssltest/analyze.html?d=www.fortuneo.fr&s=194.51.217.72&hideResults=on[www.fortuneo.fr] {set:cellbgcolor:yellow}
+| *C* {set:cellbgcolor:yellow}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* ** {set:cellbgcolor:green}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *FAIL* {set:cellbgcolor:red}
+| *PASS* {set:cellbgcolor:green}
+| *NO* {set:cellbgcolor:gray}
+| *NO* {set:cellbgcolor:gray}
+
 |===
