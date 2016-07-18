@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 10:56:13 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Jul 2016 11:00:55 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+<p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
+</div>
+<div class="paragraph">
+<p>Les annotations, je pensais bien connaitre… J’avais tort.</p>
+</div>
+<div class="paragraph">
+<p>Après s’être présenté et avoir présenté Zénika, Olivier commence par un rappel historique : en matière de méta-programmation, il existait déjà l’API <a href="http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/">Doclets</a> qui permet d’ajouter ses propres tags dans les commentaires du code. Les développeurs ont vite détourné cette fonctionnalité, souvent pour permettre la génération automatique de code. A partir de Java 5 sont apparues les annotations.</p>
+</div>
+<div class="paragraph">
+<p>Dans la bibliothèque Java standard on trouve finalement assez peu d’annotations : <code>@Override</code>, <code>@SuppressWarnings</code> et <code>@Deprecated</code> ainsi que quelques unes dans le package <code>java.lang.annotation</code> (des <em>meta-annotations</em>, c’est à dire des annotations que l’on place sur d’autres annotations comme <code>Target</code> ou <code>Retention). Avec Java 6, on en voit arriver d’autres dans les packages `javax.annotation</code> ou <code>javax.xml.bind.annotation</code>. Mais ce sont surtout les frameworks et autres standards qui font la part belle aux annotations : Hibernate, JPA, JDO, Spring, Guice, J2EE6&#8230;&#8203; Le plus souvent il s&#8217;agit de remplacer de longs fichiers de description en XML.</p>
+</div>
+<div class="paragraph">
+<p>Ensuite Olivier nous a présenté la syntaxe et les règles d&#8217;usage des annotations : elles peuvent se placer partout et si on les voit souvent sur des classes, des interfaces ou des méthodes, il est aussi possible d&#8217;annoter les packages en utilisant un fichier <a href="http://java.sun.com/docs/books/jls/third_edition/html/packages.html">package-info.java</a>, les constructeurs, les champs et également les paramètres de méthodes. Les annotations peuvent être paramétrées et ces paramètres peuvent avoir des valeurs par défaut. Valeurs par défaut qui peuvent même être des expressions si tant est que cette expression est résolue à la compilation. Toutefois il existe deux limites : les paramètres des annotations ne peuvent être null (pourquoi ? Personne ne semble vraiment savoir) et on ne peut annoter un élément qu&#8217;avec une seule annotation d&#8217;un même type. Mais il exste une astuce pour contourner le problème : écrire des annotations qui prennent un tableau d&#8217;annotations en paramètre.</p>
+</div>
+<div class="paragraph">
+<p>Puis on passe au développement d&#8217;annotations personnalisées.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public @interface MyAnnotation {
+    String aString() default "FooBar";
+    int aInteger() default 21 + 21;
+}
+
+@MyAnnotation(aString="An arbitrary String", aInteger=27)
+public class MyAnnotedClass {
+    /* .... */
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Quand on a un unique paramètre dans l&#8217;annotation on peut simplifier un peu la syntaxe en nommant ce paramètre <code>value</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public @interface MyAnnotation {
+    String value();
+}
+
+@MyAnnotation("Hello world")
+public class MyAnnotedClass {
+    /* .... */
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On peut également annoter nos propres annotations avec les meta-annotations définies dans la bibliothèque standard :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Target</code> indique sur quels éléments on peut placer l&#8217;annotation (classes, méthodes&#8230;&#8203;). Par défaut on peut mettre une annotation partout.</p>
+</li>
+<li>
+<p><code>Retention</code> indique la durée de vie de l&#8217;annotation : présence uniquement dans le code source, dans le bytecode de la classe ou également au runtime.</p>
+</li>
+<li>
+<p><code>Documented</code> indique si l&#8217;annotation apparaitra dans la javadoc.</p>
+</li>
+<li>
+<p>`Inherited indique si l&#8217;annotation est héritée par les sous-classes des classes ou elle est définie. Limitation : on ne peut pas hériter d&#8217;une annotation placée sur un interface en implémentant cette interface.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finalement Olivier est passé à des exemples concrets d&#8217;utilisation des annotations.</p>
+</div>
+<div class="paragraph">
+<p>D&#8217;abord à la compilation, les annotations permettent d'étendre les fonctionnalités du compilateur Java. Java 6 propose un mécanisme appelé <em>Pluggable Annotation Processing</em> qui permet de brancher ses propres modules dans le compilateur. Cela se passe dans les packages <code>javax.annotation</code> et <code>javax.annotation.processing</code>. Il suffit d'écire une implémentation de la classe <code>javax.annotation.processing.Processor</code> (ou étendre <code>AbstractProcessor</code>) et de la mettre dans le classpath du compilateur (les implementations de <code>Processor</code> sont découvertes par le compilateur en utilisant le <a href="http://www/docs/java/docs-1.6.0/api/index.html?java/util/ServiceLoader.html">mécanisme de chargement de service</a>). L&#8217;interface <code>Processor</code> permet d&#8217;accéder à l&#8217;<a href="http://fr.wikipedia.org/wiki/Abstract_syntax_tree">AST</a> du code en cours de compilation. Une utilisation possible est la vérification programmatique de règles de design : s&#8217;assurer par exemple que toutes les classes d&#8217;un package annoté implémentent <code>Serializable</code> ou encore que toutes les classes annotées par un <code>@Loadable</code> possède bien une méthode <code>load</code> avec les bons paramètres.</p>
+</div>
+<div class="paragraph">
+<p>Toutefois cette approche d&#8217;extension du compilateur a ses limites : il n&#8217;est pas possible de modifier le code existant (on ne peut qu&#8217;en générer) et certains bugs pouvant être bloquant trainent depuis longtemps (cela semble corrigé dans Java 7).</p>
+</div>
+<div class="paragraph">
+<p>Second exemple, en runtime cette fois, la recherche d&#8217;annotations par introspection. Pour cela il ne faut pas oublier d&#8217;ajouter la méta-annotation <code>@Rentention(RententionPolicy.RUNTIME)</code> pour que celle-ci survive à l&#8217;exécution dans la JVM. Les cas d&#8217;utilisation tournent cette fois plus vers la programmation orientée <em>POJO</em> (plus besoin d&#8217;implémenter telle interface, on appelle les méthodes par introspection en recherchant celles qui sont annotées), le mapping d&#8217;objets java vers autre chose (par exemple java vers base de données avec JPA ou JDO) ou encore la configuration des frameworks (<code>@Inject</code> dans Guice par exemple).</p>
+</div>
+<div class="paragraph">
+<p>En guise de dessert, Olivier nous a proposé une jolie demo d&#8217;injection d&#8217;annotation en runtime dans une classe. Il s&#8217;agit surtout d&#8217;une <em>proof of concept</em> et, de son propre aveux, il n&#8217;a pas trouvé de vrai use case à cela.</p>
+</div>
+<div class="paragraph">
+<p>Les slides de la présentation et les exemples de code sont disponibles sur le <a href="http://blog.zenika.com/index.php?post/2010/07/05/Conf%C3%A9rence:-Les-annotations-enfin-expliqu%C3%A9es-simplement">blog de Zenika</a>.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.ioconference-java-Conference-annotations-java-compte-rendu.adoc</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.ioconference-java-Conference-annotations-java-compte-rendu.adoc</guid><category><![CDATA[2010-07-07]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Invalid Date</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
