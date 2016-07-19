@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 10:49:53 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 10:52:37 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -1345,7 +1345,23 @@
 <div class="content">
 <iframe width="640" height="480" src="https://www.youtube.com/embed/mvOsb9vNIWM?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/08/06/La-cryptographie-a-cle-publique-par-ses-inventeurs.html</guid><category><![CDATA[cryptography]]></category><category><![CDATA[ RSA]]></category><category><![CDATA[ security]]></category><category><![CDATA[ video]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 06 Aug 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[SSL/TLS : un problème fréquent]]></title><description><![CDATA[<div class="paragraph">
+<p>Je viens de lire un post très intéressant sur le blog de <a href="http://www.ippon.fr/">Ippon Technologies</a> qui met en lumière l’importance de la notion de chaîne de certificats.</p>
+</div>
+<div class="paragraph">
+<p>Le <a href="http://fr.wikipedia.org/wiki/X.509">standard X.509</a> est basé sur un modèle de confiance pyramidal :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/X509TrustModel-20110723.png" alt="Modèle de confiance X.509">
+</div>
+</div>
+<div class="paragraph">
+<p>En haut ce sont les racines de confiance (<em>trust anchors</em>), en bas les certificats des utilisateurs finaux (<em>end entity</em>) et au milieu on trouve les certificats des autorités de certification intermédiaires. Il faut garder à l’esprit que celui qui valide un certificat ne possède en général que la racine de confiance ; mais pour effectuer la validation il faut disposer de la chaîne de certificats au complet, c’est à dire le certificat final avec l’ensemble des certificats des autorités intermédiaires. Moralité : un certificat seul ne sert à rien, il faut toujours considérer la chaîne dans son ensemble.</p>
+</div>
+<div class="paragraph">
+<p>L’article sur le blog de Ippon : <a href="http://blog.ippon.fr/2011/07/23/pourquoi-firefox-ou-java-ne-reconnaissent-pas-ce-certificat-ssl-si-cherement-payee/" class="bare">http://blog.ippon.fr/2011/07/23/pourquoi-firefox-ou-java-ne-reconnaissent-pas-ce-certificat-ssl-si-cherement-payee/</a></p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/23/1659-SSLTLS-un-probleme-frequent.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/23/1659-SSLTLS-un-probleme-frequent.html</guid><category><![CDATA[HTTPS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ SSL]]></category><category><![CDATA[ TLS]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 23 Jul 2011 14:59:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
