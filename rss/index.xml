@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 09:29:25 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 09:34:06 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -716,7 +716,45 @@
 <p>Le code complet de la classe est ici : <a href="https://gist.github.com/3246719" class="bare">https://gist.github.com/3246719</a></p>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</guid><category><![CDATA[java]]></category><category><![CDATA[ junit]]></category><category><![CDATA[ mock]]></category><category><![CDATA[ qualite]]></category><category><![CDATA[ test]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 05 Aug 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/08/05/Mocker-un-serveur-de-mail-avec-Dumbster-et-J-Uit.html</guid><category><![CDATA[java]]></category><category><![CDATA[ junit]]></category><category><![CDATA[ mock]]></category><category><![CDATA[ qualite]]></category><category><![CDATA[ test]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 05 Aug 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Exclure certaines classes de la couverture des tests unitaires]]></title><description><![CDATA[<div class="paragraph">
+<p>Dans nos projets on rencontre souvent ce cas de figure : certaines portions de code se prêtent mal aux tests unitaires. Ce sont les interfaces graphiques, le code qui manipule des fichiers, les connexions réseau… Cela peut poser problème lorsqu’on configure Sonar pour lever des alertes quand la couverture de code est trop faible.</p>
+</div>
+<div class="paragraph">
+<p>Le problème a déjà été posé car Il y a un ticket dans le JIRA de Sonar (<a href="http://jira.codehaus.org/browse/SONAR-766">SONAR-766</a>). Quand il aura été résolu Sonar devrait permettre de configurer ce qui doit être exclu de l’analyse de couverture des tests.</p>
+</div>
+<div class="paragraph">
+<p>En attendant comment faire ? En posant la question il y a quelques mois sur Twitter j’avais reçu une réponse de Damien Gouyette :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/sonar-cobertura-tweet-20120130.png" alt="sonar cobertura tweet 20120130.png">
+</div>
+</div>
+<div class="paragraph">
+<p>J’ai fini par trouver le temps de tester et ça fonctionne ! Il est possible de régler ces règles d’exclusion en adaptant par la configuration du plugin cobertura dans le POM de notre projet :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+  &lt;artifactId&gt;cobertura-maven-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;instrumentation&gt;
+      &lt;excludes&gt;
+        &lt;exclude&gt;com/mycompany/gui/**/*.class&lt;/exclude&gt;
+        &lt;exclude&gt;com/mycompany/nontestable/**/*.class&lt;/exclude&gt;
+      &lt;/excludes&gt;
+    &lt;/instrumentation&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De cette façon les classes correspondant au <em>pattern</em> indiqué sont exclues de l’analyse par cobertura et ainsi ignorées par Sonar. Le taux de couverture est donc calculé sur le code considéré comme testable. La métrique devient alors beaucoup plus intéressante pour l’évaluation de la qualité globale du projet.</p>
+</div>
+<div class="paragraph">
+<p><em>Note</em> : Attention, je parle bien sûr de tests unitaires ; il ne faut pas confondre un code qui ne peut pas être testé unitairement avec un code pour lequel les tests sont possibles mais difficiles à écrire. En outre il est toujours possible de tester autrement, avec des tests d’intégration ou des tests de <em>user experience</em> par exemple.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/01/30/Exclure-certaines-classes-de-la-couverture-des-tests-unitaires.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/01/30/Exclure-certaines-classes-de-la-couverture-des-tests-unitaires.html</guid><category><![CDATA[cobertura]]></category><category><![CDATA[ maven-cobertura-plugin]]></category><category><![CDATA[ sonar]]></category><category><![CDATA[ test]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Mon, 30 Jan 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
