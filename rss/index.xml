@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 09:40:56 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 09:58:35 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -764,7 +764,296 @@
 </div>
 <div class="paragraph">
 <p>Gilad Bracha est ingénieur logiciel chez Google, co-auteur de la spécification du langage Dart. Chez Sun, il a également été co-auteur et mainteneur de la spécification du langage Java ainsi que de la JVM.</p>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/01/26/Presentation-de-Dart-par-Gilad-Bracha.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/01/26/Presentation-de-Dart-par-Gilad-Bracha.html</guid><category><![CDATA[dart]]></category><category><![CDATA[ google]]></category><category><![CDATA[ javascript]]></category><category><![CDATA[ web]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 26 Jan 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/01/26/Presentation-de-Dart-par-Gilad-Bracha.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/01/26/Presentation-de-Dart-par-Gilad-Bracha.html</guid><category><![CDATA[dart]]></category><category><![CDATA[ google]]></category><category><![CDATA[ javascript]]></category><category><![CDATA[ web]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 26 Jan 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Couverture des tests d’intégration avec JaCoCo, Maven et Sonar]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sur certains de mes projets maven j’aimerai pouvoir séparer les tests unitaires des tests d’intégration. Les tests d’intégration sont souvent moins stables, pas toujours reproductibles et ils prennent souvent trop de temps pour être exécutés par les développeurs à chaque compilation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_d_placer_les_tests_dans_un_module_d_di">Déplacer les tests dans un module dédié</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Première chose à faire, créer un module dédié dans le projet maven pour y mettre uniquement les tests d’intégration. Voilà la structure globale du projet :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/project-layout1-20120123.png" alt="Project Layout">
+</div>
+</div>
+<div class="paragraph">
+<p>Ensuite pour empêcher que le module <code>libfoo-it</code> ne se lance à chaque compilation on crée un profil maven dédié aux test d’intégration dans le fichier <code>pom.xml</code> principal.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;profiles&gt;
+  &lt;profile&gt;
+    &lt;id&gt;run-its&lt;/id&gt;
+    &lt;modules&gt;
+      &lt;module&gt;libfoo-it&lt;/module&gt;
+    &lt;/modules&gt;
+  &lt;/profile&gt;
+&lt;/profiles&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utiliser_maven_failsafe_plugin">Utiliser maven-failsafe-plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le <a href="http://maven.apache.org/plugins/maven-failsafe-plugin/">plugin failsafe</a> permet de lancer les test d’intégration lors d’un build maven tout comme le plugin surefire le fait avec les tests unitaires. Le plugin failsafe s’attache aux phases <em>integration-test</em> et <em>verify</em> du <a href="http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">cycle de vie du build</a>.</p>
+</div>
+<div class="paragraph">
+<p>Comme il n’est pas possible de configurer plusieurs répertoires contenant les tests dans maven, la discrimination entre tests unitaires et d’intégration se fait sur le nom des classes. Il ne faudra donc pas oublier de nommer correctement ses classes de test.</p>
+</div>
+<div class="paragraph">
+<p>Les <em>templates</em> par défaut sont les suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>tests unitaires</em> : **/*Test.java, **/Test*.java, **/*TestCase.java</p>
+</li>
+<li>
+<p><em>tests d’intégration</em> : **/*IT.java, **/IT*.java, **/*ITCase.java</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On ajoute ensuite la configuration du plugin failsafe dans notre profil.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;profiles&gt;
+  &lt;profile&gt;
+    &lt;id&gt;run-its&lt;/id&gt;
+    &lt;modules&gt;
+      &lt;module&gt;libfoo-it&lt;/module&gt;
+    &lt;/modules&gt;
+    &lt;build&gt;
+      &lt;pluginManagement&gt;
+        &lt;plugins&gt;
+          &lt;plugin&gt;
+            &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.11&lt;/version&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;integration-test&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+          &lt;/plugin&gt;
+        &lt;/plugins&gt;
+      &lt;/pluginManagement&gt;
+    &lt;/build&gt;
+  &lt;/profile&gt;
+&lt;/profiles&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le POM du sous-projet libfoo-it est également à mettre à jour. De cette façon, petite optimisation, le plugin failsafe ne sera lancé que dans le module qui contient les tests d’intégration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[/~]$ mvn -Prun-its clean verify</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_couverture_de_code_avec_jacoco">Couverture de code avec JaCoCo</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Avoir des tests c’est bien, calculer la couverture de ces tests c’est mieux. Pour cela nous allons utiliser le moteur de couverture de code <a href="http://www.eclemma.org/jacoco/">JaCoCo</a> (Java Code Coverage), plus adapté aux tests d’intégration que le bien connu Cobertura.</p>
+</div>
+<div class="paragraph">
+<p>JaCoCo est fournit sous la forme d’un agent à lancer avec la JVM. Heureusement, il existe un plugin maven pour JaCoCo qui va nous aider à l’intégrer dans le build. Le plugin maven JaCoCo dispose d’un goal <em>prepare-agent</em> qui va dans un premier temps télécharger l’agent et dans un second temps créer une variable maven contenant la configuration de l’agent qu’il suffira de passer en paramètre au plugin failsafe.</p>
+</div>
+<div class="paragraph">
+<p>Voilà ce que donne la configuration du plugin (<em>Nota</em>: j’utilise la version 5.3 du plugin JaCoCo car les versions suivantes ne semblent pas fonctionner avec maven 2.2.1) :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;profiles&gt;
+  &lt;profile&gt;
+    &lt;id&gt;run-its&lt;/id&gt;
+    &lt;modules&gt;
+      &lt;module&gt;libfoo-it&lt;/module&gt;
+    &lt;/modules&gt;
+    &lt;build&gt;
+      &lt;pluginManagement&gt;
+        &lt;plugins&gt;
+          &lt;plugin&gt;
+            &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-jacoco-plugin&lt;/artifactId&gt;
+            &lt;version&gt;0.5.3.201107060350&lt;/version&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;prepare-agent&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+            &lt;configuration&gt;
+              &lt;propertyName&gt;it.failsafe.argLine&lt;/propertyName&gt;
+              &lt;destFile&gt;${it.jacoco.destFile}&lt;/destFile&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+          &lt;plugin&gt;
+            &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.11&lt;/version&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;integration-test&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+            &lt;configuration&gt;
+              &lt;argLine&gt;${it.failsafe.argLine}&lt;/argLine&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+        &lt;/plugins&gt;
+      &lt;/pluginManagement&gt;
+    &lt;/build&gt;
+    &lt;properties&gt;
+      &lt;it.jacoco.destFile&gt;${java.io.tmpdir}/jacoco-foo.dump&lt;/it.jacoco.destFile&gt;
+    &lt;/properties&gt;
+  &lt;/profile&gt;
+&lt;/profiles&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le plugin JaCoCo va générer la configuration de l’agent pour lancer les tests et la placer dans variable <code>it.failsafe.argLine</code>. Ensuite on configure le paramètre <code>argLine</code> du plugin failsafe avec cette variable. On définit également le fichier qui va collecter les données de couverture (avec paramètre <code>destFile</code>).</p>
+</div>
+<div class="paragraph">
+<p>Il faut également mettre à jour le POM du module contenant les tests :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-jacoco-plugin&lt;/artifactId&gt;
+    &lt;/plugin&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_couverture_avec_sonar">Couverture avec Sonar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Maintenant que nous avons nos données de couverture dans un fichier, il serait intéressant de les faire digérés à Sonar lors de son analyse. Depuis la version 2.12, <a href="http://www.sonarsource.org/">Sonar</a> est livré avec le plugin JaCoCo ; pour les précédentes il faudra l’installer depuis l’<em>update center</em>.</p>
+</div>
+<div class="paragraph">
+<p>Le plugin JaCoCo de Sonar attend à trouver le chemin vers le fichier de collecte des données dans la variable <code>sonar.jacoco.itReportPath</code>. Il est possible de configurer ce chemin dans l’interface web de Sonar (menu <em>settings</em>, catégorie <em>JaCoCo</em>, paramètre <em>File with execution data for integration tests</em>) mais cette variable peut également être configurée dans le POM.</p>
+</div>
+<div class="paragraph">
+<p>Voilà donc la version définitive du profil :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;profiles&gt;
+  &lt;profile&gt;
+    &lt;id&gt;run-its&lt;/id&gt;
+    &lt;modules&gt;
+      &lt;module&gt;libfoo-it&lt;/module&gt;
+    &lt;/modules&gt;
+    &lt;build&gt;
+      &lt;pluginManagement&gt;
+        &lt;plugins&gt;
+          &lt;plugin&gt;
+            &lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-jacoco-plugin&lt;/artifactId&gt;
+            &lt;version&gt;0.5.3.201107060350&lt;/version&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;phase&gt;pre-integration-test&lt;/phase&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;prepare-agent&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+            &lt;configuration&gt;
+              &lt;propertyName&gt;it.failsafe.argLine&lt;/propertyName&gt;
+              &lt;destFile&gt;${it.jacoco.destFile}&lt;/destFile&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+          &lt;plugin&gt;
+            &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.11&lt;/version&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;integration-test&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+            &lt;configuration&gt;
+              &lt;argLine&gt;${it.failsafe.argLine}&lt;/argLine&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+        &lt;/plugins&gt;
+      &lt;/pluginManagement&gt;
+    &lt;/build&gt;
+    &lt;properties&gt;
+      &lt;it.jacoco.destFile&gt;${java.io.tmpdir}/jacoco-foo.dump&lt;/it.jacoco.destFile&gt;
+      &lt;sonar.jacoco.itReportPath&gt;${it.jacoco.destFile}&lt;/sonar.jacoco.itReportPath&gt;
+    &lt;/properties&gt;
+  &lt;/profile&gt;
+&lt;/profiles&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il ne reste plus qu’à lancer l’analyse avec Sonar :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[/~]$ mvn -Prun-its clean verify sonar:sonar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finalement, après avoir ajouté le widget Integration test coverage dans le dashboard, on obtient ce résultat :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/sonar-coverage-it-20120123.png" alt="Code coverage avec Sonar">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pistes_d_am_liorations">Pistes d’améliorations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette solution est un peu brute de décoffrage et pour dire vrai entre le début de l’écriture de ce post et maintenant j’ai eu quelques idées pour l’améliorer :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Passer la configuration du profil dans un super POM dont héritent tous les projets. En effet, mis à part le paramètre <code>destFile</code> il n’y a rien de spécifique dans cette configuration. On pourrait même imaginer la génération d’un nom de fichier aléatoire à chaque lancement.</p>
+</li>
+<li>
+<p>Utiliser plusieurs modules de tests d’intégration. Pour cela il faut mettre le paramètre supplémentaire <code>append</code> à <em>true</em> dans le plugin maven JaCoCo afin que les données d’exécution de tous les modules soient collectées dans le même fichier.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Et si vous avez d’autres idées, n’hésitez pas à les poster dans les commentaires.</p>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2012/01/23/Couverture-des-tests-dintegration-avec-JaCo-Co-Maven-et-Sonar.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2012/01/23/Couverture-des-tests-dintegration-avec-JaCo-Co-Maven-et-Sonar.html</guid><category><![CDATA[cobertura]]></category><category><![CDATA[ code coverage]]></category><category><![CDATA[ JaCoCo]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ maven-failsafe-plugin]]></category><category><![CDATA[ maven-jacoco-plugin]]></category><category><![CDATA[ sonar]]></category><category><![CDATA[ test]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Mon, 23 Jan 2012 00:00:00 GMT</pubDate></item><item><title><![CDATA[Les classes internes ou la tambouille du compilateur Java]]></title><description><![CDATA[<div class="paragraph">
 <p>Il y a quelques mois Olivier Croisier a publié sur son blog <a href="http://thecodersbreakfast.net/">The Coder’s Breakfast</a> (que tout développeur Java se doit de suivre) un article intitulé <a href="http://thecodersbreakfast.net/index.php?post/2011/09/26/Inner-classes-and-the-myth-of-the-default-constructor">Inner classes and the myth of the default constructor</a>. Dans cet article il est question des classes internes et des constructeurs « cachés » ajoutés lors de la phase de compilation.</p>
 </div>
 <div class="paragraph">
