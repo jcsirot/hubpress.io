@@ -1,0 +1,11 @@
+= Video : Deep Dive into Android Security
+:hp-tags: android, conference, google, security
+:published_at: 2011-11-26
+
+image:posts/android-security-20111126.jpg[]
+
+Si vous chercher à mieux comprendre le fonctionnement du modèle de sécurité Android je vous conseille fortement de regarder cette vidéo. Dans cette excellente session de la conférence http://www.andevcon.com/[AndDevCon II] http://marakana.com/expert/aleksandar_gargenta,1.html[Aleksandar Gargenta] présente différents aspects liés à la sécurité sur Android (le _sandboxing_ des applications, le fonctionnement du système de permissions, le chiffrement et la protection des données, etc) mais il parle également des limites du modèle et des contre-mesures contre les menaces (signature des applications, _rooting_ & _rootkits_, SE-Linux, etc).
+
+video::tKJiSjVk8NA[youtube, width=640, height=360]
+
+pass:[<iframe src="//www.slideshare.net/slideshow/embed_code/key/F7Y3TS2ONEobGf" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/marakana/deep-dive-into-android-security-10123665" title="Deep Dive Into Android Security" target="_blank">Deep Dive Into Android Security</a> </strong> de <strong><a href="//www.slideshare.net/marakana" target="_blank">Marakana Inc.</a></strong> </div>]
