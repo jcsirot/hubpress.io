@@ -1,0 +1,5 @@
+= GTAC 2011 : les vidéos sont en ligne
+:hp-tags: conference, google, quality, test
+:published_at: 2011-11-24
+
+Intéressés par la qualité et le test logiciel ? Les vidéos des différentes sessions de la conférence GTAC 2011 sont désormais disponibles sur http://www.gtac.biz/talks ou sur la chaîne Youtube http://www.youtube.com/user/GoogleTechTalks[Google Tech Talks]. Bon visionnage !
