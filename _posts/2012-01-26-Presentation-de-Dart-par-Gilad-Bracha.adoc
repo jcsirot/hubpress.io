@@ -1,0 +1,9 @@
+= Présentation de Dart par Gilad Bracha
+:hp-tags: dart, google, javascript, web
+:published_at: 2012-01-26
+
+À l’occasion d’une rencontre des utilisateurs de Javascript dans la région de San Fransisco, Gilad Bracha est venu présenter Dart, le nouveau langage pour web conçu par Google.
+
+video::Ka2iDlhBwYM[youtube, width=640, height=380]
+
+Gilad Bracha est ingénieur logiciel chez Google, co-auteur de la spécification du langage Dart. Chez Sun, il a également été co-auteur et mainteneur de la spécification du langage Java ainsi que de la JVM.
