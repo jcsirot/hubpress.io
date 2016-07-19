@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 10:56:38 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 19 Jul 2016 10:58:35 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -1372,7 +1372,7 @@
 <h2 id="_les_concepts">Les concepts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><object width="395" height="395"><param name="movie" value="http://www.parleys.com/dist/share/parleysshare.swf"/><param name="allowFullScreen" value="true"/><param name="wmode" value="direct"/><param name="bgcolor" value="#222222"/><param name="flashVars" value="sv=true&amp;pageId=2366"/><embed src="http://www.parleys.com/dist/share/parleysshare.swf" type="application/x-shockwave-flash" flashVars="sv=true&amp;pageId=2366" allowfullscreen="true" bgcolor="#222222" width="395" height="395"/></object></p>
+<p><div data-parleys-presentation="soiree-git-1-2-les-concepts" style="width:100%;height:300px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/soiree-git-1-2-les-concepts">Watch on Parleys.com</a></div></p>
 </div>
 </div>
 </div>
@@ -1380,7 +1380,7 @@
 <h2 id="_la_pratique">La pratique</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><object width="395" height="395"><param name="movie" value="http://www.parleys.com/dist/share/parleysshare.swf"/><param name="allowFullScreen" value="true"/><param name="wmode" value="direct"/><param name="bgcolor" value="#222222"/> <param name="flashVars" value="sv=true&amp;pageId=2368"/><embed src="http://www.parleys.com/dist/share/parleysshare.swf" type="application/x-shockwave-flash" flashVars="sv=true&amp;pageId=2368" allowfullscreen="true" bgcolor="#222222" width="395" height="395"/></object></p>
+<p><div data-parleys-presentation="soiree-git-2-2-en-pratique" style="width:100%;height:300px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/soiree-git-2-2-en-pratique">Watch on Parleys.com</a></div></p>
 </div>
 </div>
 </div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/17/Git-pour-les-imbeciles-comme-moi.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/17/Git-pour-les-imbeciles-comme-moi.html</guid><category><![CDATA[DVCS]]></category><category><![CDATA[ git]]></category><category><![CDATA[ JUG]]></category><category><![CDATA[ parleys]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sun, 17 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
