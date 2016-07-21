@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 05:48:19 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 05:51:49 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -1488,7 +1488,41 @@ System.out.println(sg.getProvider()); // affiche "SunEC version 1.7"</code></pre
 </div>
 <div class="paragraph">
 <p>À noter également l’ouverture (mais pour le moment en béta privée) d’un autre site dédié spécifiquement aux questions touchant la cryptographie.</p>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/12/Security-Stack-Exchange.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/12/Security-Stack-Exchange.html</guid><category><![CDATA[security]]></category><category><![CDATA[ web]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 12 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/12/Security-Stack-Exchange.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/12/Security-Stack-Exchange.html</guid><category><![CDATA[security]]></category><category><![CDATA[ web]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 12 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Code comparé : SHA-1 sur Android & iOS]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Problème : on dispose d’un bloc de données dont on désire calculer l’empreinte SHA-1. Deux solutions, sur Android et iOS.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_android">Android</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import java.security.MessageDigest;
+/* ... */
+public static byte[] computeSHA1(byte[] input) {
+    MessageDigest dg = MessageDigest.getInstance("SHA-1");
+    return dg.digest(input);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ios">iOS</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-objc" data-lang="objc">#import &lt;CommonCrypto/CommonDigest.h&gt;
+/* ... */
++ (NSData*) computeSHA1:(NSData*)input
+{
+    unsigned char output[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1([input bytes], (CC_LONG)[input length], output);
+    return [NSData dataWithBytes:output length:CC_SHA1_DIGEST_LENGTH];
+}</code></pre>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</guid><category><![CDATA[android]]></category><category><![CDATA[ code]]></category><category><![CDATA[ iOS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ objective-c]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 07 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
