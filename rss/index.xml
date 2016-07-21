@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 06:01:10 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 06:10:59 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -1768,7 +1768,104 @@ ctx.init(null, tmf.getTrustManagers(), null);</code></pre>
 <p>J’ai fait le tour, un peu succinctement j’avoue, sur la validation du certificat du serveur. Mais il reste beaucoup à dire sur SSL : authentification du client, les <em>ciphers suites</em>, d’autres APIs… Ce sera l’objet d&#8217;une seconde partie.</p>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</guid><category><![CDATA[HTTP]]></category><category><![CDATA[ HTTPS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ SSL]]></category><category><![CDATA[ TLS]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 02 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</guid><category><![CDATA[HTTP]]></category><category><![CDATA[ HTTPS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ SSL]]></category><category><![CDATA[ TLS]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 02 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Audit automatique avec Play Framework]]></title><description><![CDATA[<div class="paragraph">
+<p>J’aime beaucoup l’annotation <code>@With</code> de Play framework, elle permet d’étendre le comportement d’un <em>Controller</em> en y ajoutant simplement des intercepteurs. Par exemple il est possible d’écrire un <em>Controller</em> générique dont le travail est de logguer des appels et d’ajouter ce comportement sur d’autre <em>Controller</em> avec une simple annotation.</p>
+</div>
+<div class="paragraph">
+<p>On commence par définir une annotation qui servira à taguer les méthodes dont les appels seront loggués:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package controllers;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Audit { }
+{% endcodeblock %}
+
+Ensuite on va rechercher toutes les méthodes taguées avec cette annotation et on ajoute une ligne de log contenant des informations pertinentes.
+
+
+{% codeblock lang:java %}
+package controllers;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import play.Logger;
+import play.mvc.ActionInvoker;
+import play.mvc.Finally;
+import play.mvc.Controller;
+import play.mvc.Http;
+import play.utils.Java;
+
+public class AuditTrail extends Controller
+{
+    @Finally
+    static void log() throws Throwable {
+        if (getActionAnnotation(Audit.class) != null) {
+            audit();
+        }
+    }
+
+    private static void audit() throws Throwable {
+        /* Get the method name */
+        Object[] action = ActionInvoker.getActionMethod(Http.Request.current().action);
+        Class c = (Class)action[0];
+        Method m = (Method)action[1];
+        /* Get the method parameters name... */
+        String[] names = Java.parameterNames(m);
+        /* ... and the values */
+        Object[] args = ActionInvoker.getActionMethodArgs(m, null);
+        List&lt;String&gt; params = new ArrayList&lt;String&gt;();
+            for (int i = 0; i &lt; names.length; i++) {
+                params.add(names[i] + "=" + args[i]);
+        }
+        /* Get the username if Secure module is used */
+        String username = session.get("username");
+        if (username == null) {
+            username = "Anonymous User"
+        }
+        /* Log the action */
+        Logger.info("&lt;%s&gt; called contoller action &lt;%s.%s&gt; with parameters &lt;%s&gt; at &lt;%s&gt;",
+            username, c.getSimpleName(), m.getName(), params, new Date());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enfin, pour utiliser notre <em>Audit Trail</em>, rien de plus simple, il suffit d’ajouter un <code>@With(AuditTrail.class)</code> sur un <em>Controller</em> et d’annoter avec `@Audit les méthodes à auditer.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@With({Secure.class, AuditTrail.class})
+public class Issues extends Controller
+{
+    @Audit
+    public static void showTicket(long ticketId) {
+        /* Do some stuff */
+        render(...);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et dans les logs on pourra alors trouver une ligne qui ressemble à ça :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>17:45:53,867 INFO  ~ &lt;johndoe&gt; called contoller action &lt;Issues.showTicket&gt; with parameters &lt;[ticketId: 11484]&gt; at &lt;Mon May 02 17:45:53 CEST 2011&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Beaucoup d’améliorations sont possibles comme par exemple indiquer le Logger à utiliser comme paramètre de l’annotation <code>@Audit</code> ou encore mettre les logs dans la base de donnée pour faire des recherches.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/05/05/Audit-automatique-avec-Play-Framework.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/05/05/Audit-automatique-avec-Play-Framework.html</guid><category><![CDATA[code]]></category><category><![CDATA[ framework]]></category><category><![CDATA[ java]]></category><category><![CDATA[ log]]></category><category><![CDATA[ play]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 05 May 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
