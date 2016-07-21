@@ -1,0 +1,19 @@
+= Analyse de la qualité logicielle
+:published_at: 2011-03-10
+:hp-tags: code, JUG, parleys, quality
+
+Une sympathique session du Lausanne JUG concernant l’analyse de la qualité des logiciels. Le format de la présentation, en forme de « confrontation » (mais pleine de fair-play) me plait assez : cinq éditeurs de logiciels présentent cinq outils (en fait quatre seulement dans la vidéo, le dernier n’ayant semble-t-il pas souhaité être filmé), chacun faisant en 20 minutes la démonstration de ce qu’il peut/sait faire en analysant le même logiciel. En l’occurrence c’est http://www.icescrum.org/[IceScrum 2] qui a servi d’étalon.
+
+Les outils présentés :
+
+- http://www.sonarsource.org/[Sonar]
+- http://www.parasoft.com/jsp/products/jtest.jsp[Parasoft JTest]
+- http://www.xdepend.com/[XDepend]
+- http://www.headwaysoftware.com/[Structure 101 et Restructure 101]
+- http://www.coverity.com/[Coverity Static Analysis et Coverity Dynamic Analysis]
+
+A lire également, sur le blog d’OCTO Technology, les http://blog.octo.com/retour-jug-lausanne-qualite-code-java/[commentaires et impressions] de Cyril Picat qui a organisé l’événement.
+
+Et si jamais quelqu’un du Paris JUG me lit, pourquoi ne pas organiser une session de ce genre ?
+
+pass:[<div data-parleys-presentation="session-dedicated-software-quality-analysis" style="width:100%;height:300px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/session-dedicated-software-quality-analysis">Watch on Parleys.com</a></div>]
