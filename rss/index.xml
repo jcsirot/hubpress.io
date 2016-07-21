@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 05:51:49 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 06:01:10 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -1522,7 +1522,253 @@ public static byte[] computeSHA1(byte[] input) {
 }</code></pre>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</guid><category><![CDATA[android]]></category><category><![CDATA[ code]]></category><category><![CDATA[ iOS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ objective-c]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 07 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/07/Code-compare-SHA-1-sur-Android-iOS.html</guid><category><![CDATA[android]]></category><category><![CDATA[ code]]></category><category><![CDATA[ iOS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ objective-c]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 07 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[SSL/TLS en Java – Partie 1]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>J’ai pensé appeler cet article «<em>Pourquoi SSL ne marche pas ?</em>». En effet j’ai lu beaucoup de questions sur des forums posées par des développeurs qui n’arrivaient pas à faire fonctionner SSL entre le serveur et les clients ; le plus souvent le développeur ne sait pas très bien comment fonctionne le protocole et il n’arrive pas à diagnostiquer les problèmes ; j’espère que cette série article aidera ceux qui se battent encore avec les erreurs du type <code>alert=42</code>&#8201;&#8212;&#8201;si si, je vous assure que c’est une vraie erreur :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ssl_en_quelques_mot">SSL en quelques mot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>D’abord un peu de vocabulaire, on lis souvent SSL, TLS ou encore SSL/TLS. Pour faire court, tout ça c’est la même chose. Pour entrer un peu dans les détails, SSL a été inventé par Netscape qui publia SSL 2.0 en 1995 puis SSL 3.0 en 1996. Puis ce fut le <a href="http://datatracker.ietf.org/wg/tls/">TLS Working Group</a> membre de l’IETF qui repris le standard en publiant TLS 1.0 (aussi appelé SSL 3.1) en 1999, TLS 1.1 en 2006 et TLS 1.2 en 2008. Pour la petite histoire, SSL apparait toujours dans TLS car la structure de données contenant le numéro de version du protocole vaut 3.1 pour TLS 1.0, 3.2 pour TLS 1.1 et 3.3 pour TLS 1.2.</p>
+</div>
+<div class="paragraph">
+<p>Mais finalement à quoi ça sert exactement ? SSL fournit un canal sécurisé entre un client et un serveur en fournissant les services suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>chiffrement des messages</p>
+</li>
+<li>
+<p>intégrité des message (utilisation d’un <a href="http://fr.wikipedia.org/wiki/Code_d%27authentification_de_message"><em>Message Authentication Code</em></a>)</p>
+</li>
+<li>
+<p>authentification du serveur (basée sur des certificats X.509)</p>
+</li>
+<li>
+<p>authentification du client (optionnelle)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>À noter que, <em>stricto sensu</em>, le serveur n’est pas obligé de s’authentifier auprès du client et que l’usage de certificats X.509 n’est pas obligatoire. Cependant il s’agit de cas d’utilisation marginaux.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_un_peu_de_java">Un peu de Java</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le support de SSL en Java a d’abord été fournit sous forme d’une extension la <em>Java Secure Socket Extension</em> ou JSSE ; à partir de Java 1.4, la JSSE a été incluse dans la bibliothèque standard. L’API de la JSSE est couverte par les packages java suivants : javax.net, javax.net.ssl et javax.security.cert.</p>
+</div>
+<div class="paragraph">
+<p>Alors, comment s’en sert on ? L’API JSSE a introduit la classe javax.net.ssl.SSLSocket, une sous-classe de java.net.Socket qui encapsule toute la complexité du protocole SSL. On ne peut pas instancier directement de <code>SSLSocket</code> car son constructeur est <em>protected</em>, il faut aller passer par une autre class de la JSSE <code>javax.net.ssl.SSLSocketFactory</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">SocketFactory sf = SSLContext.getDefault().getSocketFactory();
+Socket socket = sf.createSocket("www.example.com", 443);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sur le web on va plutôt utiliser le <a href="http://fr.wikipedia.org/wiki/Https#HTTPS">protocole HTTP/S</a> ; la JSSE fournit le handler <code>javax.net.ssl.HttpsURLConnection</code> qui permet de gérer ces URL en <code>https://</code>. L’utilisation devient alors complètement transparente :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">URL url = new URL("https://www.example.com");
+URLConnection conn = url.openConnection();
+System.out.println(conn instanceof HttpsURLConnection); // affiche "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Voilà un schéma tiré de la documentation officielle d’Oracle qui montre les relations entre les classes de la JSSE.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://jcsirot.github.io/hubpress.io/images/posts/jsseclasses-20110702.jpg" alt="jsseclasses 20110702.jpg">
+</div>
+</div>
+<div class="paragraph">
+<p>La classe centrale est <a href="http://download.oracle.com/javase/6/docs/api/javax/net/ssl/SSLContext.html">SSLContext</a> et c’est par cette classe que passe la configuration de SSL. Le code va alors ressembler à ça :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">SSLContext ctx = SSLContext.getInstance("TLS");
+/* ici on configure le contexte SSL */
+// ctx.init(... parameters ...);
+SSLSocketFactory sf = ctx.getSSLSocketFactory();
+/* on configure la socket factory utilisée pour les connexions aux URLs en https:// */
+HttpsURLConnection.setDefaultSSLSocketFactory(sf);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_question_de_confiance">Question de confiance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Avec SSL tout est une question de confiance. Lors du <em>handshake</em> le serveur envoie son certificat (pour être plus précis, une chaîne de certificat qui contient également toutes les autorités de certification intermédiaires) au client qui doit le valider. La validation de ce certificat implique de relier la chaîne de certificats du serveur à une racine de confiance (ou <em>trust anchor</em>).</p>
+</div>
+<div class="paragraph">
+<p>La bibliothèque standard Java est livrée avec une liste de d’autorités racines qui se trouve un fichier de type <code>KeyStore</code>. Sur ma machine (un Mac) le fichier se trouve là :
+<code>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/security/cacerts</code></p>
+</div>
+<div class="paragraph">
+<p>On peut obtenir la liste de ces autorités avec l’outil <code>keytool</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>keytool -list -keystore cacerts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ici le mot de passe demandé ne sert qu’à vérifier l’intégrité du fichier, il n’y a pas de clés dont il faut protéger la confidentialité ; et par défaut le mot de passe est changeit.</p>
+</div>
+<div class="paragraph">
+<p>Cependant il peut arriver que le serveur contacté n’ait pas de certificat signé par une autorité reconnue (test, application sur un intranet, pas d’argent pour s’acheter un certificat…). Arrive alors inéluctablement cette erreur :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exception in thread "main" javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Que s’est il passé ? Le message de l’erreur nous indique qu’il a été impossible de trouver un chemin de certificats valide pour le certificat du serveur.</p>
+</div>
+<div class="paragraph">
+<p>Le mécanisme de validation d’une chaîne de certificat est accessible via un <code>TrustManager</code>, et la classe <code>TrustManagerFactory</code> permet d’en créer une instance. Pour régler notre problème il faut donc un <code>TrustManager</code> qui prenne en compte notre nouvelle autorité racine.</p>
+</div>
+<div class="paragraph">
+<p>Première solution, ajouter l’autorité au fichier <code>cacerts</code>. Dans ce cas l’autorité racine pourra être utilisée par le <code>TrustManager</code> par défaut. Pas terrible pour faire des tests mais c’est une solution envisageable quand on a une PKI interne.</p>
+</div>
+<div class="paragraph">
+<p>Seconde solution : utiliser un <code>TrustManager</code> dédié qui fait confiance à notre nouvelle autorité. D’abord il faut créer un <code>KeyStore</code> contenant notre racine. Cela se fait simplement avec <code>keytool</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>keytool -importcert -trustcacerts -noprompt -alias myTrustAnchor -file /path/to/my/root.crt -keystore /path/to/my/keystore</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L’option <code>-trustcacerts</code> permet de créer une entrée de type <code>TrustedCertificateEntry</code> dans le <em>key store</em>.</p>
+</div>
+<div class="paragraph">
+<p>Ensuite, il existe deux options. Soit on demande au <code>TrustManager</code> par défaut d’utiliser notre <em>key store</em> ; dans ce cas on le déclare en passant une variable d’environnement à la JVM :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>java -Djavax.net.ssl.trustStore=/path/to/my/keystore -jar ...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Seconde solution, on instancie un TrustManager configuré avec notre key store de façon programmatique :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">/* instancier le KeyStore */
+KeyStore ks = KeyStore.getInstance("JKS");
+ks.load(new FileInputStream("/path/to/my/keystore"), null);
+/* initialiser une TrustManagerFactory avec ce KeyStore */
+TrustManagerFactory tmf = TrustManagerFactory.getInstance("PKIX");
+tmf.init(ks);
+/* créer un SSLContext utilisant cette TrustManagerFactory */
+SSLContext ctx = SSLContext.getInstance("TLS");
+ctx.init(null, tmf.getTrustManagers(), null);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prenez_le_contr_le">Prenez le contrôle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jusqu’à présent on a pu configurer la source des racines de confiance ; on peut donc utiliser des certificats émis par n’importe qui. Mais alors que vous venez de finir cette configuration voilà une nouvelle erreur :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exception in thread "main" javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: revocation statut check failed: no CRL found</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et oui, le certificat auto-signé que vous aviez bricolé sur le coin d’une console ne contient pas les informations permettant de le valider ; en l&#8217;occurence impossible ici de déterminer si ce certificat a été révoqué ou non. Le problème est que le comportement par défaut du <code>TrustManager</code> et de rejeter tout certificat dont le statut de révocation n’a pu être établi.</p>
+</div>
+<div class="paragraph">
+<p>Pour passer outre ce comportement et pouvoir utiliser notre certificat de test il faudrait pouvoir désactiver cette vérification du statut de révocation du certificat dans le <code>TrustManager</code>. L’API permet une configuration plus fine des paramètres de validation, cela passe par la classe <a href="http://download.oracle.com/javase/6/docs/api/java/security/cert/PKIXBuilderParameters.html">PKIXBuilderParameters</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>PKIXBuilderParameters</code> permet de configurer le comportement de la validation de chaînes de certificats en lui passant un certain nombre de paramètres parmi lesquels :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>la liste des racines de confiance (sous forme d’un <code>KeyStore</code> ou d’un <code>Set</code> de <code>TrustAnchor</code>)</p>
+</li>
+<li>
+<p>la date à laquelle on fait la validation (par défaut, la validation est faite à la date courante)</p>
+</li>
+<li>
+<p>si on doit vérifier le statut de révocation des certificats</p>
+</li>
+<li>
+<p>des magasins de certificats et de listes de révocation supplémentaires au cas où (par exemple un serveur LDAP ou seraient publiées des listes de révocation)</p>
+</li>
+<li>
+<p>et d’autres…</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Comment régler notre problème de vérification du statut de révocation ? En construisant un <code>PKIXBuilderParameters</code> qui ne fait pas cette validation :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">KeyStore st = KeyStore.getInstance("JKS");
+/* ... */
+PKIXBuilderParameters params = new PKIXBuilderParameters(ks, null);
+/* désactivation la révocation */
+params.setRevocationEnabled(false);
+TrustManagerFactory tmf = TrustManagerFactory.getInstance("PKIX");
+tmf.init(new CertPathTrustManagerParameters(params));
+SSLContext ctx = SSLContext.getInstance("TLS");
+ctx.init(null, tmf.getTrustManagers(), null);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dans cet exemple la vérification du statut de révocation a été désactivée ; c’est acceptable dans le cas d’un test mais fortement déconseillé dans un contexte de production. Dans le cas courant l’algorithme de validation va chercher dans le certificat l’URL où il peut télécharger la liste de révocation de l’autorité qui a émis ce certificat. La liste de révocation (CRL pour <em>Certificate Revocation List</em> en anglais) contient, pour simplifier, la liste des numéros de série des certificats qui n’ont pas encore expirés mais qui ont été révoqués par leur porteur. Pour certaines autorités émettant beaucoup de certificats ces CRL peuvent atteindre plusieurs Mo, voire plusieurs dizaines de Mo.</p>
+</div>
+<div class="paragraph">
+<p>Pour réduire la consommation de bande passante, le standard OCSP (<em>Online Certificate Status Protocol</em>, spécifié dans la <a href="http://tools.ietf.org/html/rfc2560">RFC 2560</a>) a été inventé. Il s’agit d’un protocole qui permet de demander à une serveur (habituellement appelé <em>répondeur OCSP</em>) de façon interactive le statut de révocation d’un unique certificat. La réponse peut être « valide », « invalide » ou « inconnu » (comprendre que le serveur n’a pas l’information pour répondre).</p>
+</div>
+<div class="paragraph">
+<p>Par défaut OCSP n’est pas utilisé pour la validation. Pour l’activer il faut soit modifier le fichier <code>java.security</code>, soit l’activer de façon programmatique dans le code :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Security.setProperty("ocsp.enabled", "true");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si OCSP est activé alors l’algorithme de validation essaie d’abord de l’utiliser et repasse sur les CRL en cas d’échec, par exemple si le certificat n’indique pas de répondeur OCSP à contacter. Il est également possible de préciser l’une URL d’un répondeur OCSP à toujours contacter ; cela peut être utile dans le cas d’un répondeur OCSP installé en proxy dans une entreprise.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Security.setProperty("ocsp.responderURL", "http://ocsp.example.net");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion_temporaire">Conclusion (temporaire)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>J’ai fait le tour, un peu succinctement j’avoue, sur la validation du certificat du serveur. Mais il reste beaucoup à dire sur SSL : authentification du client, les <em>ciphers suites</em>, d’autres APIs… Ce sera l’objet d&#8217;une seconde partie.</p>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2011/07/02/SSLTLS-en-Java-Partie-1.html</guid><category><![CDATA[HTTP]]></category><category><![CDATA[ HTTPS]]></category><category><![CDATA[ java]]></category><category><![CDATA[ SSL]]></category><category><![CDATA[ TLS]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Sat, 02 Jul 2011 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
