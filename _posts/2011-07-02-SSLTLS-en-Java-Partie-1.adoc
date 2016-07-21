@@ -163,6 +163,6 @@ Si OCSP est activé alors l’algorithme de validation essaie d’abord de l’u
 Security.setProperty("ocsp.responderURL", "http://ocsp.example.net");
 ----
 
-== Conclusion temporaire
+== Conclusion (temporaire)
 
 J’ai fait le tour, un peu succinctement j’avoue, sur la validation du certificat du serveur. Mais il reste beaucoup à dire sur SSL : authentification du client, les _ciphers suites_, d’autres APIs… Ce sera l’objet d'une seconde partie.
