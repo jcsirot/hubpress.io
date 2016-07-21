@@ -1,4 +1,4 @@
-= Parser des parties d’échecs avec Scala Parser Combinators"
+= Parser des parties d’échecs avec Scala Parser Combinators
 :published_at: 2011-01-12
 :hp-tags: chess, PGN, scala
 
