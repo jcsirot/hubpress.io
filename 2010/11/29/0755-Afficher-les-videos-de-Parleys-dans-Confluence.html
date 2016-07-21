@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Afficher les vidéos de Parleys dans Confluence</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Afficher les vidéos de Parleys dans Confluence">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Afficher les vidéos de Parleys dans Confluence">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1469102511495"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1469102511495"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1469102511495"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1469102511495"></script>
+
+    <link rel="canonical" href="https://jcsirot.github.io/hubpress.io/2010/11/29/0755-Afficher-les-videos-de-Parleys-dans-Confluence.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Coding Stories" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Afficher les vidéos de Parleys dans Confluence" />
+    <meta property="og:description" content="Comment faire quand on désire afficher du contenu multimedia (une vidéo par exemple) dans une page Confluence ? Confluence fournit une balise wiki dédiée si la ressource à afficher est stockée localement (un attachement dans le wiki par exemple). Une autre solution c’est le plugin widget connector qui est compatible" />
+    <meta property="og:url" content="https://jcsirot.github.io/hubpress.io/2010/11/29/0755-Afficher-les-videos-de-Parleys-dans-Confluence.html" />
+    <meta property="article:tag" content="confluence" />
+    <meta property="article:tag" content=" devoxx" />
+    <meta property="article:tag" content=" parleys" />
+    <meta property="article:tag" content=" web" />
+    <meta property="article:tag" content=" wiki" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Afficher les vidéos de Parleys dans Confluence" />
+    <meta name="twitter:description" content="Comment faire quand on désire afficher du contenu multimedia (une vidéo par exemple) dans une page Confluence ? Confluence fournit une balise wiki dédiée si la ressource à afficher est stockée localement (un attachement dans le wiki par exemple). Une autre solution c’est le plugin widget connector qui est compatible" />
+    <meta name="twitter:url" content="https://jcsirot.github.io/hubpress.io/2010/11/29/0755-Afficher-les-videos-de-Parleys-dans-Confluence.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Coding Stories" href="https://jcsirot.github.io/hubpress.io/rss/" />
+  </head>
+  <body class="post-template tag-confluence tag-devoxx tag-parleys tag-web tag-wiki">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io" title="Coding Stories" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <li class="drawer-list-item">
+            <a href="https://jcsirot.github.io/hubpress.io/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="https://twitter.com/jcsirot" title="Twitter" target="_blank">
+              <i class="fa fa-twitter"></i>Twitter
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://github.com/jcsirot" title="Github" target="_blank">
+              <i class="fa fa-github"></i>Github
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://fr.linkedin.com/in/jcsirot" title="LinkedIn" target="_blank">
+              <i class="fa fa-linkedin"></i>LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-confluence tag-devoxx tag-parleys tag-web tag-wiki">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2010-11-29" itemprop="datePublished">
+                  6 years ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="https://jcsirot.github.io/hubpress.io/tag/confluence/">confluence</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/devoxx/"> devoxx</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/parleys/"> parleys</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/web/"> web</a>, <a href="https://jcsirot.github.io/hubpress.io/tag/wiki/"> wiki</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="https://jcsirot.github.io/hubpress.io/2010/11/29/0755-Afficher-les-videos-de-Parleys-dans-Confluence.html" itemprop="url" data-pjax title="Afficher les vidéos de Parleys dans Confluence">Afficher les vidéos de Parleys dans Confluence</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <a href="http://www.coding-stories.com/" class="post-author-name">
+                  Jean-Christophe Sirot
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Comment faire quand on désire afficher du contenu multimedia (une vidéo par exemple) dans une page <a href="http://www.atlassian.com/software/confluence/">Confluence</a> ?
+Confluence fournit une <a href="http://confluence.atlassian.com/display/DOC/Embedding+Multimedia+Content">balise wiki</a> dédiée si la ressource à afficher est stockée localement (un attachement dans le wiki par exemple). Une autre solution c’est le plugin widget connector qui est compatible avec des services tels que youtube, vimeo, slideshare… Malheureusement aucune de ces solutions ne permet d’inclure une vidéo issue de <a href="http://www.parleys.com/">Parleys</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_une_macro_utilisateur">Une macro utilisateur</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Confluence permet des définir ses propres macros pour afficher du code HTML arbitraire dans une page du wiki. Cela permet par exemple de formater automatiquement des données ou, dans notre cas, d’insérer du contenu externe. Pour insérer la vidéo je vais écrire une <em>macro utilisateur</em> ; ce type a de macro a l’avantage de pouvoir être saisie directement dans l’interface d’administration de Confluence.</p>
+</div>
+<div class="paragraph">
+<p>Pour créer une nouvelle macro, dans le menu de gauche cliquez sur '<em>User Macros</em>' puis sur '<em>Create a User Macro</em>' au-dessus de la liste des macro existantes. Puis on configure la nouvelle macro :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Name</em> : Parleys</p>
+</li>
+<li>
+<p><em>Visibility</em> : visible par tous</p>
+</li>
+<li>
+<p><em>Title</em> : parleys</p>
+</li>
+<li>
+<p><em>Description</em> : Embeds Parleys video</p>
+</li>
+<li>
+<p><em>Categories</em> : Contenu Externe</p>
+</li>
+<li>
+<p><em>Macro Body Processing</em> : No macro body (toutes les informations seront contenues dans les paramètres de la macro)</p>
+</li>
+<li>
+<p><em>Output format</em> : HTML</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_le_gabarit">Le gabarit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans la zone <em>template</em> on commence par définir les paramètres de la macro. Ils sont au nombre de quatre : <code>id</code> (l’identifiant de la video), <code>width</code>, <code>height</code> et `allowFullScreen (si on active la fonction de passage en plein écran). Définir ces paramètres permet d’accéder à la macro depuis le navigateur de macros dans l’éditeur de page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>## @param id:title=id|desc=The video identifier|required=true|multiple=false
+## @param width:title=width|type=int|desc=The video width|required=false|multiple=false|default=474
+## @param height:title=height|type=int|desc=The video height|required=false|multiple=false|default=443
+## @param allowFullScreen:title=Allow full screen|type=boolean|desc=Allow full screen|required=false|multiple=false|default=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ensuite on va définir des valeurs par défaut pour nos différents paramètres. Pour accéder au paramètre dont le nom est foo, on utilise la variable <code>$paramfoo</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#set($id= $paramid)
+#set($width= $paramwidth)
+#set($height= $paramheight)
+#set($allowFullScreen= $paramallowFullScreen)
+
+#if (!$width)
+  #set ($width=474)
+#end
+
+#if (!$height)
+  #set ($height=443)
+#end
+
+#if (!$allowFullScreen)
+  #set ($allowFullScreen="true")
+#end</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et enfin il n’y a plus qu’à importer le code HTML fournit par Parleys en remplaçant les variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div&gt;
+  &lt;object width="$width" height="$height"&gt;
+    &lt;param name="movie" value="http://www.parleys.com/share/parleysshare2.swf?pageId=$id"/&gt;
+    &lt;param name="allowFullScreen" value="$allowFullScreen"/&gt;
+    &lt;param name="pageId" value="$id"/&gt;
+    &lt;embed src="http://www.parleys.com/share/parleysshare2.swf?pageId=$paramid"
+          type="application/x-shockwave-flash"
+          allowfullscreen="$allowFullScreen"
+          width="$width" height="$height"/&gt;
+  &lt;/object&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utiliser_la_macro">Utiliser la macro</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour utiliser la macro, il suffit de l’appeler dans une page avec l’identifiant (obligatoire) de la vidéo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{parleys:id=1234}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On peut aussi passer les paramètres supplémentaires en les séparant par des <code>|</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{parleys:id=1234|width=237|height=221}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>À partir de Confluence 3.3.4, grâce à la définition des paramètres au début du template, il est possible d’accèder directement à la macro depuis le navigateur de macro et l’auto-complétion fonctionne dans le mode d’édition <em>Rich Text</em>.</p>
+</div>
+</div>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://www.coding-stories.com/" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars.githubusercontent.com/u/470082?v&#x3D;3" alt="Jean-Christophe Sirot">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://www.coding-stories.com/" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Jean-Christophe Sirot</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                  <p class="post-author-location">Paris</p>
+                  <p class="post-author-website">
+                    <a href="http://www.coding-stories.com/" rel="nofollow">http://www.coding-stories.com/</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">November 29, 2010</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder">Coding Stories</span>. 2016. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1469102511495"></script>
+
+
+  </body>
+</html>
