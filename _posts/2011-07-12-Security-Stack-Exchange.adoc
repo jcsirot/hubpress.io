@@ -1,0 +1,11 @@
+= Security Stack Exchange"
+:hp-tags: security, web
+:published_at: 2011-07-12
+
+image::posts/ITSecurity-e1310503676421-300x135-20110712.png[]
+
+Le site de questions/réponses http://security.stackexchange.com/[Security Stack Exchange] vient de sortir de sa phase de béta test et devient donc officiellement le 28e site du réseau http://stackexchange.com/sites[Stack Exchange] (dont la tête de pont est le célèbre http://stackoverflow.com/[Stack Overflow], le site de questions/réponses dédié aux programmeurs de tout poil).
+
+Nouveau design donc pour le site qui abandonne les couleurs de la béta, mais également ouverture d’un http://security.blogoverflow.com/[blog] et d’un https://twitter.com/StackSecurity[compte twitter]. Si vous avez des questions sur la sécurité des applications web, sur la certification des PKI, sur les cartes à puce, sur les standards cryptographiques… vous êtes au bon endroit.
+
+À noter également l’ouverture (mais pour le moment en béta privée) d’un autre site dédié spécifiquement aux questions touchant la cryptographie.
