@@ -7,7 +7,7 @@ Après avoir vu cette http://stackoverflow.com/questions/3598424/jar-signing-str
 
 == Utiliser deux _keystores_
 
-Tout d’abord il s’agit de produire un keystore pour le développement ; soit un certificat auto-signée, soit un certificat émis par une PKI interne à votre organisation si d’aventure vous en disposez une. Appelons le `dev.keystore. Ce keystore va être enregistré dans le SCM et de cette façon le serveur d’intégration continue pourra signer les builds de développement.
+Tout d’abord il s’agit de produire un keystore pour le développement ; soit un certificat auto-signée, soit un certificat émis par une PKI interne à votre organisation si d’aventure vous en disposez une. Appelons le `dev.keystore`. Ce keystore va être enregistré dans le SCM et de cette façon le serveur d’intégration continue pourra signer les builds de développement.
 
 Le deuxième keystore contiendra la clé de production, c’est-à-dire un certificat signé par une autorité de certification délivrant des certificats de signature de code. Comptez entre 100 et 300€/an. Appelons le `prod.keystore`. Idéalement ce keystore sera conservé en sécurité et protégé par un mot de passe sûr, connu uniquement des personnes autorisées (par exemple le responsable des releases).
 
