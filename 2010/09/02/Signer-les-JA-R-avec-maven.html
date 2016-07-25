@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1469449241577"/>
-    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1469449241577"/>
-    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1469449241577"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1469455469129"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1469455469129"/>
+    <link rel="stylesheet" href="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1469455469129"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1469449241577"></script>
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1469455469129"></script>
 
     <link rel="canonical" href="https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html" />
     <meta name="referrer" content="origin" />
@@ -200,7 +200,7 @@ null
 <h2 id="_utiliser_deux_em_keystores_em">Utiliser deux <em>keystores</em></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tout d’abord il s’agit de produire un keystore pour le développement ; soit un certificat auto-signée, soit un certificat émis par une PKI interne à votre organisation si d’aventure vous en disposez une. Appelons le `dev.keystore. Ce keystore va être enregistré dans le SCM et de cette façon le serveur d’intégration continue pourra signer les builds de développement.</p>
+<p>Tout d’abord il s’agit de produire un keystore pour le développement ; soit un certificat auto-signée, soit un certificat émis par une PKI interne à votre organisation si d’aventure vous en disposez une. Appelons le <code>dev.keystore</code>. Ce keystore va être enregistré dans le SCM et de cette façon le serveur d’intégration continue pourra signer les builds de développement.</p>
 </div>
 <div class="paragraph">
 <p>Le deuxième keystore contiendra la clé de production, c’est-à-dire un certificat signé par une autorité de certification délivrant des certificats de signature de code. Comptez entre 100 et 300€/an. Appelons le <code>prod.keystore</code>. Idéalement ce keystore sera conservé en sécurité et protégé par un mot de passe sûr, connu uniquement des personnes autorisées (par exemple le responsable des releases).</p>
@@ -392,7 +392,7 @@ null
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1469449241577"></script>
+    <script src="//jcsirot.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1469455469129"></script>
 
 
   </body>
