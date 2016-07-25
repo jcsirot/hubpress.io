@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 25 Jul 2016 12:16:56 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 25 Jul 2016 12:20:41 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -2244,7 +2244,146 @@ public class Security extends Secure.Security
 <p>Si vous avez d’autres idées ou des remarques, n’hésitez pas à laisser un commentaire.</p>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/11/03/Authentification-LDAP-avec-Play-framework.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/11/03/Authentification-LDAP-avec-Play-framework.html</guid><category><![CDATA[framework]]></category><category><![CDATA[ java]]></category><category><![CDATA[ ldap]]></category><category><![CDATA[ play]]></category><category><![CDATA[ spring]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Wed, 03 Nov 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/11/03/Authentification-LDAP-avec-Play-framework.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/11/03/Authentification-LDAP-avec-Play-framework.html</guid><category><![CDATA[framework]]></category><category><![CDATA[ java]]></category><category><![CDATA[ ldap]]></category><category><![CDATA[ play]]></category><category><![CDATA[ spring]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Wed, 03 Nov 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Signer les JARs avec maven]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Après avoir vu cette <a href="http://stackoverflow.com/questions/3598424/jar-signing-strategy-in-maven-projects">question</a> sur stackoverflow j’ai pensé que présenter la façon dont je gère la signature de code avec maven pouvait en intéresser certains.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utiliser_deux_em_keystores_em">Utiliser deux <em>keystores</em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tout d’abord il s’agit de produire un keystore pour le développement ; soit un certificat auto-signée, soit un certificat émis par une PKI interne à votre organisation si d’aventure vous en disposez une. Appelons le `dev.keystore. Ce keystore va être enregistré dans le SCM et de cette façon le serveur d’intégration continue pourra signer les builds de développement.</p>
+</div>
+<div class="paragraph">
+<p>Le deuxième keystore contiendra la clé de production, c’est-à-dire un certificat signé par une autorité de certification délivrant des certificats de signature de code. Comptez entre 100 et 300€/an. Appelons le <code>prod.keystore</code>. Idéalement ce keystore sera conservé en sécurité et protégé par un mot de passe sûr, connu uniquement des personnes autorisées (par exemple le responsable des releases).</p>
+</div>
+<div class="paragraph">
+<p>Pour les détails de la génération de la clé et l’obtention d’un certificat je vous laisse regarder la <a href="http://download.oracle.com/javase/6/docs/technotes/tools/solaris/keytool.html">documentation de keytool</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configurer_maven">Configurer maven</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le plugin maven-jarsigner-plugin comme son nom l’indique permet de signer des jar. Comme il est lié par défaut à la phase <em>package</em> de maven il sera appelé automatiquement une fois le jar généré. Configurons-le.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-jarsigner-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.2&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;sign&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+        &lt;configuration&gt;
+          &lt;keystore&gt;${keystore.path}&lt;/keystore&gt;
+          &lt;storetype&gt;${keystore.type}&lt;/storetype&gt;
+          &lt;alias&gt;${keystore.alias}&lt;/alias&gt;
+          &lt;storepass&gt;${keystore.store.password}&lt;/storepass&gt;
+          &lt;keypass&gt;${keystore.key.password}&lt;/keypass&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;plugins&gt;
+  &lt;build&gt;
+  ...
+  &lt;properties&gt;
+    &lt;keystore.path&gt;dev.keystore&lt;/keystore.path&gt;
+    &lt;keystore.type&gt;JKS&lt;/keystore.type&gt;
+    &lt;keystore.alias&gt;signingKey&lt;/keystore.alias&gt;
+    &lt;keystore.password&gt;changeit&lt;/keystore.password&gt;
+    &lt;keystore.store.password&gt;${keystore.password}&lt;/keystore.store.password&gt;
+    &lt;keystore.key.password&gt;${keystore.password}&lt;/keystore.key.password&gt;
+  &lt;/properties&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ensuite dans le fichier <code>${HOME}/.m2/settings.xml</code> on définit un profil codesigning :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;settings&gt;
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;codesigning&lt;/id&gt;
+      &lt;properties&gt;
+        &lt;keystore.path&gt;~/private/prod.keystore&lt;/keystore.path&gt;
+        &lt;keystore.alias&gt;codesigning&lt;/keystore.alias&gt;
+        &lt;keystore.type&gt;JKS&lt;/keystore.type&gt;
+        &lt;keystore.store.password&gt;${keystore.password}&lt;/keystore.store.password&gt;
+        &lt;keystore.key.password&gt;${keystore.password}&lt;/keystore.key.password&gt;
+        &lt;keystore.password&gt;aVeryStringPassword&lt;/keystore.password&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/settings&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Désormais pour signer avec la clé de production il suffit de lancer maven avec le bon profil.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn clean install -Pcodesigning</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si vous être parano, il est possible de ne pas mettre le mot de passe dans le fichier <code>settings.xml</code>. Dans ce cas on le passe à maven en paramètre.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn clean install -Pcodesigning -Dkeystore.password=aVeryStringPassword</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faire_une_release">Faire une release</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La version stable du produit se doit d’être signée par la clé de production. Pour cela on passe le profil au plugin release :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn release:perform -Darguments="-Pcodesigning -Dkeystore.password=aVeryStringPassword"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et comme je trouve cette syntaxe peu agréable à utiliser, j’ai configuré le plugin dans le <code>pom.xml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.0&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;arguments&gt;-Pcodesigning -Dkeystore.password=${keystore.password}&lt;/arguments&gt;
+    &lt;goals&gt;deploy&lt;/goals&gt;
+    &lt;useReleaseProfile&gt;false&lt;/useReleaseProfile&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>de cette façon on peut se contenter d’appeler cette commande :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn release:perform -Dkeystore.password=aVeryStringPassword</pre>
+</div>
+</div>
+</div>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</guid><category><![CDATA[java]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ maven-jarsigner-plugin]]></category><category><![CDATA[ maven-release-plugin]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 02 Sep 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
