@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 25 Jul 2016 14:04:29 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Coding Stories]]></title><description><![CDATA[Singe savant en ingénierie logicielle]]></description><link>https://jcsirot.github.io/hubpress.io</link><image><url>images/cover/cover.jpg</url><title>Coding Stories</title><link>https://jcsirot.github.io/hubpress.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 25 Jul 2016 14:16:11 GMT</lastBuildDate><atom:link href="https://jcsirot.github.io/hubpress.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Continuous Delivery with Jenkins workflow and Docker]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently Cloudbees releases the <a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Workflow+Plugin">CloudBees Docker Workflow Plugin</a> to make the integration of Docker with Jenkins workflows as easy as possible. Now, deploying a continuous delivery pipeline is (almost) straightforward. Here is a simple but comprehensive example.</p>
@@ -2383,7 +2383,127 @@ public class Security extends Secure.Security
 </div>
 </div>
 </div>
-</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</guid><category><![CDATA[java]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ maven-jarsigner-plugin]]></category><category><![CDATA[ maven-release-plugin]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 02 Sep 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/09/02/Signer-les-JA-R-avec-maven.html</guid><category><![CDATA[java]]></category><category><![CDATA[ maven]]></category><category><![CDATA[ maven-jarsigner-plugin]]></category><category><![CDATA[ maven-release-plugin]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Thu, 02 Sep 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[equals() et java.lang.reflect.Proxy]]></title><description><![CDATA[<div class="paragraph">
+<p><a href="http://download.oracle.com/javase/6/docs/api/java/lang/reflect/Proxy.html">java.lang.reflect.Proxy</a> qui a été ajouté dans la bibliothèque standard à partir de Java 1.3 est un de mes jouets préférés. Cette classe permet de créer dynamiquement des instances qui implémentent n’importe quelle liste d’interfaces.</p>
+</div>
+<div class="paragraph">
+<p>Prenons un exemple :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public interface UserAccount
+{
+    Credentials getCredentials();
+    void updateCredentials(Credentials credentials);
+    void suspend();
+    void resume();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Avec une classe Proxy on peut fabriquer une instance de <code>UserAccount</code> qui loggue les appels aux différentes méthodes :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public UserAccount wrapBad(final UserAccount realAccout)
+{
+    InvocationHandler handler = new InvocationHandler() {
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
+        {
+            try {
+                method.invoke(realAccount, args);
+            } finally {
+                LOGGER.info(method + " called with arguments " + Arrays.toString(args));
+            }
+        }
+    };
+    return Proxy.newProxyInstance(UserAccount.class.getClassLoader(),
+        new Class[] { UserAccount.class }, handler);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et là, formidable, chaque appel produit maintenant une ligne de log. Sauf que si on s’arrête là on s’expose à un gag :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">UserAccount account = wrapBad(realAccount);
+System.out.println(account.equals(account)); /* &lt;-- affiche false */</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Et là on se rend compte qu’on a cassé le contrat de <code>Object.equals()</code>. `Object.equals() définit une relation d’équivalence et par conséquent cette relation est réflexive, comme le précise d’ailleurs la javadoc :</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+It is reflexive: for any non-null reference value x, x.equals(x) should return true.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Que se passe-t-il exactement ? Premier élément de réponse dans la javadoc de <code>InvocationHandler</code>.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+An invocation of the hashCode, equals, or toString methods declared in java.lang.Object on a proxy instance will be encoded and dispatched to the invocation handler’s invoke method in the same manner as interface method invocations are encoded and dispatched.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Pas de comportement particulier pour <code>equals</code>, si bien que dans notre exemple, l’appel est simplement passé à l’objet `realAccount, avec pour argument, l’objet proxy ce qui va bien sûr renvoyer <em>false</em>.</p>
+</div>
+<div class="paragraph">
+<p>Voilà une façon de régler le problème :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">private static class MyInvocationHandler implements InvocationHandler
+{
+    private UserAccount account;
+
+    public MyInvocationHandler(UserAccount account)
+    {
+        this.account = account;
+    }
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
+    {
+        try {
+            if (m.getDeclaringClass() == Object.class
+                &amp;&amp; m.getName().equals("equals")
+                &amp;&amp; args.length == 1)
+            {
+                Object o == args[0];
+                return Proxy.isProxyClass(o) &amp;&amp; this.equals(Proxy.getInvocationHandler(o));
+            }
+            method.invoke(realAccount, args);
+        } finally {
+            LOGGER.info(method + " called with arguments " + Arrays.toString(args));
+        }
+    }
+
+    public boolean equals(Object o)
+    {
+        if (o == this) {
+            return true;
+        } else if (o == null) {
+            return false;
+        } else if (o instanceof MyInvocationHandler) {
+            return this.account.equals(((MyInvocationHandler)o).account);
+        }
+        return false;
+    }
+}
+
+public UserAccount wrapGood(final UserAccount realAccout)
+{
+    InvocationHandler handler = new MyInvocationHandler(realAccount);
+    return Proxy.newProxyInstance(UserAccount.class.getClassLoader(),
+        new Class[] { UserAccount.class }, handler);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dans cette version corrigée le cas de la méthode <code>equals</code> est gérée à part. Ensuite on considère que deux <em>proxies</em> sont égaux s’ils utilisent la même implémentation de <code>InvocationHandler</code> et que les objets <code>UserAccount</code> encapsulés par ces <em>handlers</em> sont égaux selon equals. Pour cela on utilise deux méthodes intéressantes de la classe <code>Proxy</code> : <code>isProxyClass()</code> qui permet de savoir si un objet est un proxy et <code>getInvocationHandler()</code> qui permet de récupérer le `InvocationHandler lié à un proxy.</p>
+</div>]]></description><link>https://jcsirot.github.io/hubpress.io/2010/08/24/equals-et-javalangreflect-Proxy.html</link><guid isPermaLink="true">https://jcsirot.github.io/hubpress.io/2010/08/24/equals-et-javalangreflect-Proxy.html</guid><category><![CDATA[java]]></category><category><![CDATA[ proxy]]></category><dc:creator><![CDATA[Jean-Christophe Sirot]]></dc:creator><pubDate>Tue, 24 Aug 2010 00:00:00 GMT</pubDate></item><item><title><![CDATA[Conférence annotations java – compte rendu]]></title><description><![CDATA[<div class="paragraph">
 <p>La conférence <em>Annotations Java</em> animée par Olivier Croisier, expert java et auteur du blog <a href="http://thecodersbreakfast.net/">The Coders Breakfast</a>, s’est tenue le 29 juin dernier a eu lieu la dans les locaux de <a href="http://www.zenika.com/">Zénika</a>.</p>
 </div>
 <div class="paragraph">
