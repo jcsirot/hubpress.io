@@ -1,0 +1,9 @@
+= Sommes-nous des professionnels ?
+:published_at: 2010-11-22
+:hp-tags: conference, devoxx, keynote, software craftsmanship, Uncle Bob
+
+Les vidéos de la conférence Devoxx 2009 sont désormais toutes http://parleys.com/#id=74957&st=4[librement accessibles] ; j’en profite donc pour inciter toute personne travaillant dans le développement logiciel à regarder la _keynote_ de http://en.wikipedia.org/wiki/Robert_Cecil_Martin[Robert Martin] (alias oncle Bob) sur ce que devrait être, et devrait faire, un professionnel du développement logiciel. À Lire également, l’article de wikipedia http://en.wikipedia.org/wiki/Software_craftsmanship[Software craftsmanship].
+
+Alors certes, rien de bien nouveau dans le discours ; mais il est toujours bon de rappeler les évidences, ne serait-ce que pour nous montrer qu’il nous reste une marge de progression…
+
+pass:[<div data-parleys-presentation="craftsmanship-policy" style="width:100%;height:395px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/craftsmanship-policy">Watch on Parleys.com</a></div>]
