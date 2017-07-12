@@ -16,5 +16,21 @@
   },
   "theme": {
     "name": "ghostium"
+  },
+  "urls": {
+    "site": "https://jcsirot.github.io/hubpress.io",
+    "hubpress": "https://jcsirot.github.io/hubpress.io",
+    "theme": "//jcsirot.github.io/hubpress.io/themes/ghostium",
+    "images": "https://jcsirot.github.io/hubpress.io/images"
+  },
+  "initialisationConfigComponent": {
+    "name": "initialise-configuration",
+    "computed": {},
+    "methods": {},
+    "staticRenderFns": [
+      null,
+      null,
+      null
+    ]
   }
 }
